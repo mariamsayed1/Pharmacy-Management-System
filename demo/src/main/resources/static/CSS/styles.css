@@ -455,7 +455,7 @@ body{
     text-align: center;
   }
   
-  .btnr {
+  .categorybtn {
     border: none;
     text-align: center;
     font-size: 16px;
@@ -469,10 +469,17 @@ body{
     border-radius: 8px;
   }
   
-  .btnr:hover .overlay {
+  .categorybtn:hover .overlay {
     opacity: 1;
     font-size: 20px;
     border-radius: 8px;
+  }
+
+  .section {
+    display:inline-block;
+    margin-top: 150px;
+    margin-left:20px;
+  
   }
   
   .latest-offers p{
@@ -821,6 +828,7 @@ body{
     }
   }
   
+  
   .containerTlogin{
     width: 100%;
     height: 100vh;
@@ -933,7 +941,8 @@ body{
     
   }
    
-   .slider {
+
+   /* .slider {
     display: inline-block;
     vertical-align:auto;
     position: relative;
@@ -1060,7 +1069,7 @@ body{
   margin-top:150px;
   margin-left:20px;
   
-  }
+  } */
   
   @media (min-width: 1025px) {
     .h-custom {
@@ -1068,7 +1077,7 @@ body{
     }
     }
   
-    .icon-hover-primary:hover {
+    /* .icon-hover-primary:hover {
       border-color: #3AAFA9 !important;
       background-color: white !important;
     }
@@ -1083,11 +1092,11 @@ body{
     
     .icon-hover-danger:hover i {
       color: #dc4c64 !important;
-    }
+    } */
   
    
     
-    ul#wishlist {
+    /* ul#wishlist {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -1127,4 +1136,4 @@ body{
     }
     main {
       padding: 20px;
-    }
+    } */
