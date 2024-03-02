@@ -1,0 +1,122 @@
+<html xmlns:th="http://www.thymleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+        <style>
+            body {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #009579;
+                margin: 0;
+                font-family: 'Poppins', sans-serif;
+                background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0, 27, 50, 0.8)),url(../public/IMAGES/pic3.jpg);
+                background-size:cover;
+            }
+
+            form {
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 600px;
+                padding: 20px;
+                box-sizing: border-box;
+                /* margin: 20px; */
+            }
+
+            form h1 {
+                text-align: center;
+                color: #009579; 
+            
+            }
+
+            form p {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            form label {
+                display: block;
+                font-size: 15px;
+                margin-bottom: 8px;
+                color: #333;
+                font-weight: bold;
+            }
+
+            form input {
+                width: 100%;
+                padding: 17px;
+                margin-bottom: 27px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 13px;
+            }
+
+            .invalid-feedback {
+                color: red;
+                font-size: 12px;
+            }
+
+            form button {
+                background: #009579;
+            
+                color: #fff;
+                padding: 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+                display: block;
+                
+            }
+
+            form button:hover {
+                background: #006653;
+            }
+
+            form a {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+                color: #009579;
+                text-decoration: none;
+                
+            }
+
+            form a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <form action="#" method="post">
+            <h1>Sign-Up</h1>
+
+            <label for="Username"><b>Username</b></label>
+            <input type="text" placeholder="Enter username" name="username" <?php echo $username; ?>">
+            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Create password" name="password" <?php echo $password; ?>">
+            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+
+            <label for="psw-repeat"><b>Confirm password</b></label>
+            <input type="password" placeholder="Confirm password" name="confirm_password" <?php echo $confirm_password; ?>">
+            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+
+            <button type="submit">Sign Up</button>
+
+            <a href="login.php">Already have an account? Login</a>
+        </form>
+    </body>
+
+</html>

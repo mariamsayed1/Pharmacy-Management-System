@@ -1,0 +1,144 @@
+<html xmlns:th="http://www.thymleaf.org">
+    <head>
+        <title>Shopping Cart</title>
+        <link rel="stylesheet" href="/CSS/cart.css">
+        <link rel="stylesheet" href="/CSS/styles">
+    </head>
+    <body>
+        <header id="navbar">
+            <nav>
+                <div class="logo">
+                    <a href="index.php"><img src="/IMAGES/logo1.jpg"></a>
+                </div>
+                <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+                <ul class="navigation-links" id="navigationLinks">
+                    <li class="lnks">
+                        <div class="dropdown">
+                            <button class="dropbtn">Shop</button>
+                            <div class="dropdown-content">
+                                <a href="#">Medications</a>
+                                <a href="#">Vitamins</a>
+                                <a href="#">Personal Care</a>
+                                <a href="#">Beauty Products</a>
+                                <a href="#">Skin Care</a>
+                                <a href="#">Cleaning Products</a>
+                                <a href="#">Mother Baby Care</a>
+                                <a href="#">Medical Supplements</a>
+                                <a href="#">Hair Care</a>
+                                <a href="#">Perfumes</a>
+                            </div>
+                    </li>
+                    <li><a href="#">Order a Prescription</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Search</a></li>   
+                </ul>
+
+                <ul class="right-links" id="rightLinks">
+                    <li class="split"><a href="cart1.php"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
+                        <li class="split"><a href="user.php">Welcome</a></li>
+                        <li class="split"><a href="logout.php"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+                        <li class="split"><a href="signup.php"><i class="fa fa-fw fa-user"></i>Login/Signup</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h1>Shopping Cart</h1>
+        <table>
+            <tr>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+            </tr>
+            <tr>
+            <td>
+                <img class="product-image" src="/IMAGES/panadol.jpg" alt="Medicine 1"><br>
+            </td>
+            <td>Panadol</td>
+            <td>34.00 EGP</td>
+            <td>
+                <input class="quantity-input" type="number" value="2" min="1">
+            </td>
+            <td>34.00 EGP</td>
+            <td><span class="cart-item-remove">Remove</span></td>
+            </tr>
+            <tr>
+            <td>
+                <img class="product-image" src="/IMAGES/la-roche-posay-sunscreen.jpg" alt="Medicine 2"><br>
+            </td>
+            <td>La rouche posay sunscreen</td>
+            <td>425.00 EGP</td>
+            <td>
+                <input class="quantity-input" type="number" value="1" min="1">
+            </td>
+            <td>425.00 EGP</td>
+            <td><span class="cart-item-remove">Remove</span></td>
+            </tr>
+            <tr>
+            <td>
+                <img class="product-image" src="/IMAGES/omega3.jpg" alt="Medicine 3"><br>
+            </td>
+            <td>Omega 3</td>
+            <td>400.00 EGP</td>
+            <td>
+                <input class="quantity-input" type="number" value="3" min="1">
+            </td>
+            <td>400.00 EGP</td>
+            <td><span class="cart-item-remove">Remove</span></td>
+            </tr>
+        </table>
+        
+        <div class="cart-summary">
+            <div class="cart-summary-row">
+            <span class="cart-summary-label">Subtotal:</span>
+            <span class="cart-summary-value">859 EGP</span>
+            </div>
+            <div class="cart-summary-row">
+            <span class="cart-summary-label">Shipping:</span>
+            <span class="cart-summary-value">50 EGP</span>
+            </div>
+            <div class="cart-summary-row">
+            <span class="cart-summary-label cart-summary-total">Total:</span>
+            <span class="cart-summary-value cart-summary-total">909 EGP</span>
+            </div>
+            <a href="checkout.html" class="checkout-btn">Checkout</a>
+        </div>
+        <footer id="ft">
+            <div class="container__footer">
+                <div class="box__footer">
+                    <div class="logo2">
+                        <img src="/IMAGES/logo1.png" alt="">
+                    </div>
+                </div>
+                <div class="box__footer">
+                    <h2>Contacts</h2>
+                    <a href="https://www.google.com">Ddose0725@gmail.com</a>
+                    <a href="#">Hotline | 1234</a>
+                    <a href="#">Phone:- +201057324491</a>
+                    <a href="#">Branches</a>
+                </div>
+                <div class="box__footer">
+                    <h2>Orders</h2>
+                    <a href="#">Shipping & Delivery</a>
+                    <a href="#">Return & Exchange</a>
+                    <a href="#">Payment</a>
+                    <a href="#">Previous Orders</a>
+                </div>
+                <div class="box__footer">
+                    <h2>Find Us</h2>
+                    <a href="#"> <i class="fab fa-facebook-square"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-twitter-square"></i> Twitter</a>
+                    <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
+                    <a href="#"><i class="fab fa-instagram-square"></i> Instagram</a>
+                </div>
+            </div>
+                <div class="box__copyright">
+                    <!-- <hr> -->
+                    <p> © 2023 <b>Dose Pharmcy</b></p>
+                </div>
+        </footer>
+    </body>
+
+</html>
