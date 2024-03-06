@@ -15,7 +15,7 @@
                 background: #009579;
                 margin: 0;
                 font-family: 'Poppins', sans-serif;
-                background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0, 27, 50, 0.8)),url(../public/IMAGES/pic3.jpg);
+                background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0, 27, 50, 0.8)),url(\demo\src\main\resources\static\IMAGES\pic3.jpg.jpg);
                 background-size:cover;
             }
 
@@ -98,24 +98,45 @@
     </head>
     <body>
         
-        <form action="#" method="post">
+        <!-- <form action="#" method="post">
             <h1>Sign-Up</h1>
 
+            <label for="Fullname"><b>Full Name</b></label>
+            <input type="text" placeholder="Enter your fullname" name="fullname" >
+
             <label for="Username"><b>Username</b></label>
-            <input type="text" placeholder="Enter username" name="username" <?php echo $username; ?>">
-            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+            <input type="text" placeholder="Enter your username" name="username" >
+            
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Create password" name="password" <?php echo $password; ?>">
-            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+            <label for="phoneno"><b>Phone Number</b></label>
+            <input type="phonenumber" placeholder="Enter your phone number " name="phonenumber" >
+            
 
-            <label for="psw-repeat"><b>Confirm password</b></label>
-            <input type="password" placeholder="Confirm password" name="confirm_password" <?php echo $confirm_password; ?>">
-            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+            <label for="psw"><b> Password</b></label>
+            <input type="password" placeholder="Enter your password" name="password" >
 
-            <button type="submit">Sign Up</button>
+            <label for="confpsw"><b> Confirm Password</b></label>
+            <input type="confirmpassword" placeholder="Confirm your password" name="confirmpassword" >
+           
 
-            <a href="login.php">Already have an account? Login</a>
+            <button type="submit">Sign Up</button> -->
+
+            <form th:action="@{/User/signup}" th:object="${user}" method="POST">
+                <label for="Fullname"><b>Full Name</b></label>
+                <input type="text" th:field="*{fullname}" placeholder="Enter your fullname">
+                <label for="Username"><b>Username</b></label>
+                <input type="text" th:field="*{username}" placeholder="Enter your username">
+                <label for="email"><b>Email</b></label>
+                <input type="phoneno" th:field="*{email}" placeholder="Enter your email">
+                <label for="phoneno"><b>Phone Number</b></label>
+                <input type="phoneno" th:field="*{phonenumber}" placeholder="Enter your phone number">
+                <label for="psw"><b> Password</b></label>
+                <input type="password" th:field="*{password}" placeholder="Enter your password">
+                <label for="confpsw"><b> Confirm Password</b></label>
+                <input type="confirmpassword" th:field="*{confirmpassword}" placeholder="Confirm your password">
+                <input type="submit">
+
+            <a href="login">Already have an account? Login</a>
         </form>
     </body>
 

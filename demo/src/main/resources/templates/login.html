@@ -94,21 +94,26 @@
     </head>
 
     <body>
-        <form action="#" method="post">
+        <!-- <form action="#" method="post"> -->
         
-            <h1>Sign-In</h1>
+            <!-- <h1>Log-In</h1> -->
 
-            <label for="Username"><b>Username</b></label>
-            <input type="text" placeholder="Enter username" name="username" <?php echo $username; ?>">
-            <span class="invalid-feedback"><?php echo $username_err; ?></span>
-
+            <!-- <label for="Username/Email"><b>Username / Email</b></label>
+            <input type="text" placeholder="Enter your username or email" name="username" >
+        
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" <?php echo $password; ?>">
-            <span class="invalid-feedback"><?php echo $password_err; ?></span>
-        
-            <button type="submit">Sign In</button>
+            <input type="password" placeholder="Enter your Password" name="password" >
+            
+            <button type="submit">Log In</button> -->
 
-            <a href="signup.php">Don't have an account?  SignUp</a>
+            <form th:action="@{/User/login}" th:object="${user}" method="POST">
+                <label for="Username/Email"><b>Username / Email</b></label>
+                <input type="text" th:field="*{username}" placeholder="Enter Username">
+                <label for="psw"><b>Password</b></label>
+                <input type="password" th:field="*{password}" placeholder="Enter Password">
+                <input type="submit">
+
+            <a href="signup">Don't have an account? SignUp</a>
         </form>
     </body>
 
