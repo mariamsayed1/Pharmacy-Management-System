@@ -10,6 +10,7 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String fullname;
     private String username;
     private String email;

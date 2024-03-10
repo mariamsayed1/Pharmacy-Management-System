@@ -98,46 +98,23 @@
     </head>
     <body>
         
-        <!-- <form action="#" method="post">
-            <h1>Sign-Up</h1>
-
+        <form th:action="@{/signup}" th:object="${user}" method="POST">
             <label for="Fullname"><b>Full Name</b></label>
-            <input type="text" placeholder="Enter your fullname" name="fullname" >
-
+            <input type="text" th:field="*{fullname}" placeholder="Enter your fullname">
             <label for="Username"><b>Username</b></label>
-            <input type="text" placeholder="Enter your username" name="username" >
-            
-
+            <input type="text" th:field="*{username}" placeholder="Enter your username">
+            <label for="email"><b>Email</b></label>
+            <input type="email" th:field="*{email}" placeholder="Enter your email">
             <label for="phoneno"><b>Phone Number</b></label>
-            <input type="phonenumber" placeholder="Enter your phone number " name="phonenumber" >
-            
-
+            <input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number">
             <label for="psw"><b> Password</b></label>
-            <input type="password" placeholder="Enter your password" name="password" >
-
+            <input type="password" th:field="*{password}" placeholder="Enter your password">
             <label for="confpsw"><b> Confirm Password</b></label>
-            <input type="confirmpassword" placeholder="Confirm your password" name="confirmpassword" >
-           
+            <input type="password" th:field="*{confirmpassword}" placeholder="Confirm your password">
+            <input type="submit">
 
-            <button type="submit">Sign Up</button> -->
-
-            <form th:action="@{/User/signup}" th:object="${user}" method="POST">
-                <label for="Fullname"><b>Full Name</b></label>
-                <input type="text" th:field="*{fullname}" placeholder="Enter your fullname">
-                <label for="Username"><b>Username</b></label>
-                <input type="text" th:field="*{username}" placeholder="Enter your username">
-                <label for="email"><b>Email</b></label>
-                <input type="phoneno" th:field="*{email}" placeholder="Enter your email">
-                <label for="phoneno"><b>Phone Number</b></label>
-                <input type="phoneno" th:field="*{phonenumber}" placeholder="Enter your phone number">
-                <label for="psw"><b> Password</b></label>
-                <input type="password" th:field="*{password}" placeholder="Enter your password">
-                <label for="confpsw"><b> Confirm Password</b></label>
-                <input type="confirmpassword" th:field="*{confirmpassword}" placeholder="Confirm your password">
-                <input type="submit">
-
-            <a href="login">Already have an account? Login</a>
-        </form>
+            <a th:href="@{/login}">Already have an account? Login</a>
+    </form>
     </body>
 
 </html>

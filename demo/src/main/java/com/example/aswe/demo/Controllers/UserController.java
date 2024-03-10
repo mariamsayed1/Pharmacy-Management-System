@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+
 import com.example.aswe.demo.Models.User;
 import com.example.aswe.demo.Repositories.UserRepository;
 
@@ -28,29 +31,32 @@ public class UserController {
         return mav;
     }
 
-     @GetMapping("signup")
+     @GetMapping("/signup")
     public ModelAndView addUser() {
         ModelAndView mav = new ModelAndView("signup.html");
         User newUser = new User();
         mav.addObject("user", newUser);
         return mav;
     }
-      @PostMapping("signup")
-    public String saveUser(@ModelAttribute User user) {
-        String encodedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-        user.setPassword(encodedPassword);
-        this.userRepository.save(user);
-        return "Added";
-    }
+    
+    @PostMapping("/signup")
+public ModelAndView saveUser(@ModelAttribute User user) {
+    String encodedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
+    user.setPassword(encodedPassword);
+    this.userRepository.save(user);
 
-    @GetMapping("login")
+    ModelAndView mav = new ModelAndView("redirect:/login");
+    return mav;
+}
+    
+    @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView("login.html");
         User newUser = new User();
         mav.addObject("user", newUser);
         return mav;
     }
-     @PostMapping("login")
+     @PostMapping("/login")
     public String LoginProcess(@RequestParam("username") String username, @RequestParam("password") String password) {
        User dbUser = this.userRepository.findByUsername(username);
        if(dbUser == null) return "Login Failed";
@@ -63,3 +69,5 @@ public class UserController {
  
     
 }
+
+
