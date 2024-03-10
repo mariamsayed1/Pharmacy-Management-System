@@ -97,23 +97,36 @@
         </style>
     </head>
     <body>
-        
-        <form th:action="@{/signup}" th:object="${user}" method="POST">
-            <label for="Fullname"><b>Full Name</b></label>
-            <input type="text" th:field="*{fullname}" placeholder="Enter your fullname">
-            <label for="Username"><b>Username</b></label>
-            <input type="text" th:field="*{username}" placeholder="Enter your username">
-            <label for="email"><b>Email</b></label>
-            <input type="email" th:field="*{email}" placeholder="Enter your email">
-            <label for="phoneno"><b>Phone Number</b></label>
-            <input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number">
-            <label for="psw"><b> Password</b></label>
-            <input type="password" th:field="*{password}" placeholder="Enter your password">
-            <label for="confpsw"><b> Confirm Password</b></label>
-            <input type="password" th:field="*{confirmpassword}" placeholder="Confirm your password">
-            <input type="submit">
 
-            <a th:href="@{/login}">Already have an account? Login</a>
+    <form th:action="@{/signup}" th:object="${user}" method="post">
+        
+        <label for="fullname"><b>Full Name</b></label>
+        <input type="text" th:field="*{fullname}" placeholder="Enter your full name">
+        
+        <label for="username"><b>Username</b></label>
+        <input type="text" th:field="*{username}" placeholder="Enter your username">
+        <p th:if="${hasUsernameTakenError}" th:style="${usernameTakenError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${usernameTakenError}"></p>
+        
+        <label for="email"><b>Email</b></label>
+        <input type="text" th:field="*{email}" placeholder="Enter your email">
+        <p th:if="${hasEmailTakenError}" th:style="${emailTakenError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${emailTakenError}"></p>
+        <p th:if="${hasEmailError}" th:style="${emailError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${emailError}"></p>
+
+        <label for="phoneno"><b>Phone Number</b></label>
+        <input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number">
+        
+       <label for="password"><b>Password</b></label>
+       <input type="password" th:field="*{password}" placeholder="Enter your password">
+       <p th:if="${hasPasswordLengthError}" th:style="${passwordLengthError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordLengthError}"></p>
+       <p th:if="${hasPasswordMatchError}" th:style="${passwordMatchError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordMatchError}"></p>
+
+       <label for="confirmpassword"><b>Confirm Password</b></label>
+       <input type="password" th:field="*{confirmpassword}" placeholder="Confirm your password">
+       <p th:if="${hasPasswordMatchError}" th:style="${passwordMatchError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordMatchError}"></p>
+
+       <label th:if="${hasEmptyFieldsError}" style="color: red; text-decoration: underline;">Please fill in all fields</label>
+        
+        <input type="submit" value="Sign Up">
     </form>
     </body>
 

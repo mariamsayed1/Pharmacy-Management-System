@@ -14,13 +14,13 @@ public class User {
     private String fullname;
     private String username;
     private String email;
-    private int phonenumber;
+    private String phonenumber;
     private String password;
     private String confirmpassword;
     public User() {
     }
 
-    public User(String fullname, String username, String email, int phonenumber, String password, String confirmpassword) {
+    public User(String fullname, String username, String email, String phonenumber, String password, String confirmpassword) {
         this.fullname = fullname;
         this.username = username;
         this.email = email;
@@ -53,11 +53,11 @@ public class User {
         this.email = email;
     }
 
-    public int getPhonenumber() {
+    public String getPhonenumber() {
         return this.phonenumber;
     }
 
-    public void setPhonenumber(int phonenumber) {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 
@@ -92,7 +92,7 @@ public class User {
         return this;
     }
 
-    public User phonenumber(int phonenumber) {
+    public User phonenumber(String phonenumber) {
         setPhonenumber(phonenumber);
         return this;
     }
