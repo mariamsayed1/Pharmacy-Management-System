@@ -94,19 +94,8 @@
     </head>
 
     <body>
-        <!-- <form action="#" method="post"> -->
         
-            <!-- <h1>Log-In</h1> -->
-
-            <!-- <label for="Username/Email"><b>Username / Email</b></label>
-            <input type="text" placeholder="Enter your username or email" name="username" >
-        
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter your Password" name="password" >
-            
-            <button type="submit">Log In</button> -->
-
-            <form th:action="@{/User/login}" th:object="${user}" method="POST">
+            <!-- <form th:action="@{/User/login}" th:object="${user}" method="POST">
                 <label for="Username/Email"><b>Username / Email</b></label>
                 <input type="text" th:field="*{username}" placeholder="Enter Username">
                 <label for="psw"><b>Password</b></label>
@@ -114,7 +103,19 @@
                 <input type="submit">
 
             <a href="signup">Don't have an account? SignUp</a>
-        </form>
+        </form> -->
+        
     </body>
 
+    <form th:action="@{/login}" method="post">
+        <label for="username"><b>Username</b></label>
+        <input type="text" name="username" placeholder="Enter your username">
+        <p style="color: red; text-decoration: underline;" th:if="${loginError != null && loginErrorField eq 'username'}" th:text="${loginError}"></p>
+    
+        <label for="password"><b>Password</b></label>
+        <input type="password" name="password" placeholder="Enter your password">
+        <p style="color: red; text-decoration: underline;" th:if="${loginError != null && loginErrorField eq 'password'}" th:text="${loginError}"></p>
+    
+        <button type="submit">Login</button>
+    </form>
 </html>
