@@ -26,15 +26,13 @@
                 width: 100%;
                 max-width: 600px;
                 padding: 20px;
-                margin-top: 10;
-                margin-bottom: 20;
                 box-sizing: border-box;
-               
+                /* margin: 20px; */
             }
 
             form h1 {
                 text-align: center;
-                color:rgb(24, 99, 102); 
+                color: #009579; 
             
             }
 
@@ -65,8 +63,10 @@
                 color: red;
                 font-size: 12px;
             }
+
             form button {
-                background:rgb(89, 188, 192);
+                background: #009579;
+            
                 color: #fff;
                 padding: 12px;
                 border: none;
@@ -75,18 +75,20 @@
                 font-size: 16px;
                 width: 100%;
                 display: block;
+                
             }
 
             form button:hover {
-                background: rgb(24, 99, 102);
+                background: #006653;
             }
 
             form a {
                 display: block;
                 text-align: center;
-                margin-top: 10px;
-                color:  rgb(24, 99, 102);
+                margin-top: 20px;
+                color: #009579;
                 text-decoration: none;
+                
             }
 
             form a:hover {
@@ -97,7 +99,6 @@
     <body>
 
     <form th:action="@{/signup}" th:object="${user}" method="post">
-        <h1> Sign Up</h1>
         
         <label for="fullname"><b>Full Name</b></label>
         <input type="text" th:field="*{fullname}" placeholder="Enter your full name">
@@ -124,9 +125,8 @@
        <p th:if="${hasPasswordMatchError}" th:style="${passwordMatchError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordMatchError}"></p>
 
        <label th:if="${hasEmptyFieldsError}" style="color: red; text-decoration: underline;">Please fill in all fields</label>
-      
-       <button type="submit">Sign Up</button>
-        <a href="login">Already have an account? Log In</a>
+        
+        <input type="submit" value="Sign Up">
     </form>
     </body>
 

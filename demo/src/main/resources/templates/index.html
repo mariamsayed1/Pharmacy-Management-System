@@ -24,6 +24,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
+<<<<<<< HEAD
         <header id="navbar">
             <nav>
                 <div class="logo">
@@ -63,6 +64,9 @@
             </nav>
         </header>
 
+=======
+        <!-- <div th:insert="~{Partials/header :: header}"></div> -->
+>>>>>>> 7587c6795ff08533a86891522f58905a679113d3
         <!-- <div id="mega-box-overlay"></div> -->
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -96,7 +100,21 @@
             <p>Browse Products By</p>
             <h1> Our Categories</h1> 
             <div class="container">
-                <figure class="category">
+                <!-- <ul>
+                    <li th:each="category : ${categories}"> -->
+                        <figure class="category" th:each="category : ${categories}">
+                            <a href="medications.html">
+                                <button class="categorybtn">
+                                    <img src="/IMAGES/${category.image}" alt="${category.image}" />
+                                    <div class="overlay">
+                                        <div class="text" th:text="${category.name}"></div>
+                                    </div>
+                                </button>
+                            </a>
+                        </figure> 
+                    <!-- </li>
+                </ul> -->
+                <!-- <figure class="category">
                         <a href="medications.html">
                             <button class="categorybtn">
                                 <img src="/IMAGES/medicationsedited.jpg" alt="#">
@@ -195,7 +213,7 @@
                                 </div>
                             </button>
                         </a>
-                </figure>
+                </figure> -->
             </div>
         </section>
         <br>
