@@ -24,7 +24,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <!-- <div th:insert="~{Partials/header :: header}"></div> -->
+        <div th:insert="~{fragments/header :: header}"></div>
+        <!-- <div th:include="fragments/header :: header"></div> -->
         <!-- <div id="mega-box-overlay"></div> -->
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -297,7 +298,7 @@
         </section>
 
         
-        <div th:insert="~{fragments/footer :: footer}"></div>
+        <div th:insert="~{fragments/header :: header}"></div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="../public/JS/javascript.js"></script> -->
