@@ -24,43 +24,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <header id="navbar">
-            <nav>
-                <div class="logo">
-                    <a href="index.php"><img src="/IMAGES/logo1.jpg"></a>
-                </div>
-                <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-                <ul class="navigation-links" id="navigationLinks">
-                    <li class="lnks">
-                        <div class="dropdown">
-                            <button class="dropbtn">Shop</button>
-                            <div class="dropdown-content">
-                                <a href="#">Medications</a>
-                                <a href="#">Vitamins</a>
-                                <a href="#">Personal Care</a>
-                                <a href="#">Beauty Products</a>
-                                <a href="#">Skin Care</a>
-                                <a href="#">Cleaning Products</a>
-                                <a href="#">Mother Baby Care</a>
-                                <a href="#">Medical Supplements</a>
-                                <a href="#">Hair Care</a>
-                                <a href="#">Perfumes</a>
-                            </div>
-                    </li>
-                    <li><a href="#">Order a Prescription</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Search</a></li>   
-                </ul>
-    
-                <ul class="right-links" id="rightLinks">
-                    <li class="split"><a href="cart1.php"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
-                        <li class="split"><a href="user.php">Welcome</a></li>
-                        <li class="split"><a href="logout.php"><i class="fa fa-fw fa-user"></i>Logout</a></li>
-                        <li class="split"><a href="signup.php"><i class="fa fa-fw fa-user"></i>Login/Signup</a></li>
-                </ul>
-            </nav>
-        </header>
+        <div th:insert="~{fragments/header :: header}"></div>
+
+
         <div class="wrapper">
             <div class="title"> Medicines</div>
             <div class="products">
@@ -83,40 +49,10 @@
                 <?php } ?>
             </ul> -->
         </div>
-        <footer id="ft">
-            <div class="container__footer">
-                <div class="box__footer">
-                    <div class="logo2">
-                        <img src="/IMAGES/logo1.png" alt="">
-                    </div>
-                </div>
-                <div class="box__footer">
-                    <h2>Contacts</h2>
-                    <a href="https://www.google.com">Ddose0725@gmail.com</a>
-                    <a href="#">Hotline | 1234</a>
-                    <a href="#">Phone:- +201057324491</a>
-                    <a href="#">Branches</a>
-                </div>
-                <div class="box__footer">
-                    <h2>Orders</h2>
-                    <a href="#">Shipping & Delivery</a>
-                    <a href="#">Return & Exchange</a>
-                    <a href="#">Payment</a>
-                    <a href="#">Previous Orders</a>
-                </div>
-                <div class="box__footer">
-                    <h2>Find Us</h2>
-                    <a href="#"> <i class="fab fa-facebook-square"></i> Facebook</a>
-                    <a href="#"><i class="fab fa-twitter-square"></i> Twitter</a>
-                    <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
-                    <a href="#"><i class="fab fa-instagram-square"></i> Instagram</a>
-                </div>
-            </div>
-                <div class="box__copyright">
-                    <!-- <hr> -->
-                    <p> © 2023 <b>Dose Pharmcy</b></p>
-                </div>
-        </footer>
+
+        
+        <div th:insert="~{fragments/footer :: footer}"></div>
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

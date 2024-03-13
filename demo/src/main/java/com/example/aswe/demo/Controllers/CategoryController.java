@@ -42,4 +42,9 @@ public class CategoryController {
         this.categoryRepository.save(category);
         return new ModelAndView("addCategory.html");
     }
+
+    // @GetMapping("/admin")
+    // public ModelAndView index() {         
+    //     return new ModelAndView("admin.html");
+    //  }
 }

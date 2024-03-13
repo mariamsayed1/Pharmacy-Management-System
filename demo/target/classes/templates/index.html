@@ -24,7 +24,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <!-- <div th:insert="~{Partials/header :: header}"></div> -->
+        <div th:insert="~{fragments/header :: header}"></div>
+        <!-- <div th:include="fragments/header :: header"></div> -->
         <!-- <div id="mega-box-overlay"></div> -->
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -296,41 +297,8 @@
             </div> 
         </section>
 
-        <footer id="ft">
-            <div class="container__footer">
-                <div class="box__footer">
-                    <div class="logo2">
-                        <img src="/IMAGES/logo1.png" alt="">
-                    </div>
-                </div>
-                <div class="box__footer">
-                    <h2>Contacts</h2>
-                    <a href="https://www.google.com">Ddose0725@gmail.com</a>
-                    <a href="#">Hotline | 1234</a>
-                    <a href="#">Phone:- +201057324491</a>
-                    <a href="#">Branches</a>
-                </div>
-                <div class="box__footer">
-                    <h2>Orders</h2>
-                    <a href="#">Shipping & Delivery</a>
-                    <a href="#">Return & Exchange</a>
-                    <a href="#">Payment</a>
-                    <a href="#">Previous Orders</a>
-                </div>
-                <div class="box__footer">
-                    <h2>Find Us</h2>
-                    <a href="#"> <i class="fab fa-facebook-square"></i> Facebook</a>
-                    <a href="#"><i class="fab fa-twitter-square"></i> Twitter</a>
-                    <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
-                    <a href="#"><i class="fab fa-instagram-square"></i> Instagram</a>
-                </div>
-            </div>
-                <div class="box__copyright">
-                    <!-- <hr> -->
-                    <p> © 2023 <b>Dose Pharmcy</b></p>
-                </div>
-        </footer>
-
+        
+        <div th:insert="~{fragments/footer :: footer}"></div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="../public/JS/javascript.js"></script> -->
