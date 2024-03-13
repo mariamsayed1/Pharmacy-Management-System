@@ -120,12 +120,12 @@ public class UserController {
         mav.addObject("username");
         return mav;
     }
-    // @GetMapping("/index")
-    // public ModelAndView viewindex(HttpSession session) {
-    // ModelAndView mav = new ModelAndView("index.html");
-    // mav.addObject ("username", (String) session.getAttribute("username"));
-    // return mav;
-    // }
+    @GetMapping("/index")
+    public ModelAndView viewindex(HttpSession session) {
+    ModelAndView mav = new ModelAndView("index.html");
+    mav.addObject ("username", (String) session.getAttribute("username"));
+    return mav;
+    }
 
     @PostMapping("/login")
     public ModelAndView loginProcess(@RequestParam("username") String username,
