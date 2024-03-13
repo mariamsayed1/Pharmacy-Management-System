@@ -16,22 +16,26 @@ import com.example.aswe.demo.Models.User;
 import com.example.aswe.demo.Repositories.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @RestController
+@RequestMapping("/User")
+
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/index")
-    public ModelAndView index(HttpSession session) {
-        ModelAndView mav = new ModelAndView("index.html");
-        mav.addObject("username",(String) session.getAttribute("username"));
-        return mav;
-    }
+    // @GetMapping("/index")
+    // public ModelAndView index(HttpSession session) {
+    //     ModelAndView mav = new ModelAndView("index.html");
+    //     mav.addObject("username",(String) session.getAttribute("username"));
+    //     return mav;
+    // }
 
     @GetMapping("/")
-    public ModelAndView getUsers() {
+    public ModelAndView getallUsers() {
         ModelAndView mav = new ModelAndView("index.html");
         List<User> users = this.userRepository.findAll();
         mav.addObject("users", users);
@@ -90,7 +94,7 @@ public class UserController {
             user.setPassword(encodedPassword);
             this.userRepository.save(user);
 
-            return new ModelAndView("redirect:/login");
+            return new ModelAndView("redirect:/User/login");
         }
         return mav;
     }
@@ -154,7 +158,7 @@ public class UserController {
         // Redirect to the index page after successful login
         session.setAttribute("username", dbUser.getUsername());
         // return "Welcome " + dbUser.getUsername();
-        return new ModelAndView("redirect:/index");
+        return new ModelAndView("redirect:/User/index");
 
     }
    

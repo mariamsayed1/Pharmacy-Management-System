@@ -64,7 +64,7 @@
                         <figure class="category" th:each="category : ${categories}">
                             <a href="medications.html">
                                 <button class="categorybtn">
-                                    <img src="/IMAGES/${category.image}" alt="${category.image}" />
+                                    <img th:src="@{${'/IMAGES/'+category.image}}" alt="${category.image}" />
                                     <div class="overlay">
                                         <div class="text" th:text="${category.name}"></div>
                                     </div>

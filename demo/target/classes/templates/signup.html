@@ -6,7 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Sign Up Form</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
-        <style>
+        <link rel="stylesheet" href="/CSS/login.css">
+        <!-- <style>
             body {
                 min-height: 100vh;
                 display: flex;
@@ -26,8 +27,12 @@
                 width: 100%;
                 max-width: 600px;
                 padding: 20px;
+                margin-top: 10;
+                margin-bottom: 20;
                 box-sizing: border-box;
                 /* margin: 20px; */
+
+                
             }
 
             form h1 {
@@ -94,12 +99,12 @@
             form a:hover {
                 text-decoration: underline;
             }
-        </style>
+        </style> -->
     </head>
     <body>
 
-    <form th:action="@{/signup}" th:object="${user}" method="post">
-        
+    <form th:action="@{/User/signup}" th:object="${user}" method="post">
+        <h1> Sign Up</h1>
         <label for="fullname"><b>Full Name</b></label>
         <input type="text" th:field="*{fullname}" placeholder="Enter your full name">
         
@@ -126,7 +131,9 @@
 
        <label th:if="${hasEmptyFieldsError}" style="color: red; text-decoration: underline;">Please fill in all fields</label>
         
-        <input type="submit" value="Sign Up">
+        <!-- <input type="submit" value="Sign Up"> -->
+        <button type="submit">Sign Up</button>
+        <a href="/User/login">Already have an account? Log In</a>
     </form>
     </body>
 
