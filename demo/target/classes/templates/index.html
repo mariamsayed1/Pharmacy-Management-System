@@ -24,45 +24,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <header id="navbar">
-            <nav>
-                <div class="logo">
-                    <a href="index.php"><img src="/IMAGES/logo1.jpg"></a>
-                </div>
-                <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-                <ul class="navigation-links" id="navigationLinks">
-                    <li class="lnks">
-                        <div class="dropdown">
-                            <button class="dropbtn">Shop</button>
-                            <div class="dropdown-content">
-                                <a href="#">Medications</a>
-                                <a href="#">Vitamins</a>
-                                <a href="#">Personal Care</a>
-                                <a href="#">Beauty Products</a>
-                                <a href="#">Skin Care</a>
-                                <a href="#">Cleaning Products</a>
-                                <a href="#">Mother Baby Care</a>
-                                <a href="#">Medical Supplements</a>
-                                <a href="#">Hair Care</a>
-                                <a href="#">Perfumes</a>
-                            </div>
-                    </li>
-                    <li><a href="#">Order a Prescription</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Search</a></li>   
-                </ul>
-    
-                <ul class="right-links" id="rightLinks">
-                    <li class="split"><a href="cart1.php"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
-                        <li class="split"><a href="user.php">Welcome</a></li>
-                        <li class="split"><a href="logout.php"><i class="fa fa-fw fa-user"></i>Logout</a></li>
-                        <li class="split"><a href="signup"><i class="fa fa-fw fa-user"></i>Signup</a></li>
-                        <li class="split"><a href="login"><i class="fa fa-fw fa-user"></i>Login</a></li>
-                </ul>
-            </nav>
-        </header>
-
+        <!-- <div th:insert="~{Partials/header :: header}"></div> -->
         <!-- <div id="mega-box-overlay"></div> -->
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -96,7 +58,21 @@
             <p>Browse Products By</p>
             <h1> Our Categories</h1> 
             <div class="container">
-                <figure class="category">
+                <!-- <ul>
+                    <li th:each="category : ${categories}"> -->
+                        <figure class="category" th:each="category : ${categories}">
+                            <a href="medications.html">
+                                <button class="categorybtn">
+                                    <img src="/IMAGES/${category.image}" alt="${category.image}" />
+                                    <div class="overlay">
+                                        <div class="text" th:text="${category.name}"></div>
+                                    </div>
+                                </button>
+                            </a>
+                        </figure> 
+                    <!-- </li>
+                </ul> -->
+                <!-- <figure class="category">
                         <a href="medications.html">
                             <button class="categorybtn">
                                 <img src="/IMAGES/medicationsedited.jpg" alt="#">
@@ -195,7 +171,7 @@
                                 </div>
                             </button>
                         </a>
-                </figure>
+                </figure> -->
             </div>
         </section>
         <br>
