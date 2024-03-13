@@ -14,7 +14,7 @@
             
                 margin: 0;
                 font-family: 'Poppins', sans-serif;
-                background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0, 27, 50, 0.8)),url(../public/IMAGES/pic3.jpg);
+                background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0, 27, 50, 0.8)),url(/IMAGES/pic3.jpg);
                 background-size:cover;
             }
 
@@ -32,7 +32,7 @@
 
             form h1 {
                 text-align: center;
-                color: #009579;
+                color: rgb(24, 99, 102);
             }
 
             form p {
@@ -64,7 +64,7 @@
             }
 
             form button {
-                background: #009579;
+                background:rgb(89, 188, 192);
                 color: #fff;
                 padding: 12px;
                 border: none;
@@ -76,14 +76,14 @@
             }
 
             form button:hover {
-                background: #006653;
+                background:rgb(24, 99, 102);
             }
 
             form a {
                 display: block;
-                text-align: center;
-                margin-top: 20px;
-                color: #009579;
+                text-align:center;
+                margin-top: 10px;
+                color:  rgb(24, 99, 102);
                 text-decoration: none;
             }
 
@@ -93,21 +93,9 @@
         </style>
     </head>
 
-    <body>
-        
-            <!-- <form th:action="@{/User/login}" th:object="${user}" method="POST">
-                <label for="Username/Email"><b>Username / Email</b></label>
-                <input type="text" th:field="*{username}" placeholder="Enter Username">
-                <label for="psw"><b>Password</b></label>
-                <input type="password" th:field="*{password}" placeholder="Enter Password">
-                <input type="submit">
-
-            <a href="signup">Don't have an account? SignUp</a>
-        </form> -->
-        
-    </body>
 
     <form th:action="@{/login}" method="post">
+        <h1> Log In</h1>
         <label for="username"><b>Username</b></label>
         <input type="text" name="username" placeholder="Enter your username">
         <p style="color: red; text-decoration: underline;" th:if="${loginError != null && loginErrorField eq 'username'}" th:text="${loginError}"></p>
@@ -115,7 +103,8 @@
         <label for="password"><b>Password</b></label>
         <input type="password" name="password" placeholder="Enter your password">
         <p style="color: red; text-decoration: underline;" th:if="${loginError != null && loginErrorField eq 'password'}" th:text="${loginError}"></p>
-    
-        <button type="submit">Login</button>
+
+        <button type="submit">Log in</button>
+        <a href="signup">Don't have an account? Sign Up</a>
     </form>
 </html>
