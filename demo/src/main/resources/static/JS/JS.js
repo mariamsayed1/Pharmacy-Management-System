@@ -36,4 +36,33 @@ $(document).ready(function () {
       $("#show-list").html("");
     });
   });
-  
+
+  function sendproduct(inputElement) {
+    const prodsearch = document.getElementById("prodsearch");
+    const searchTerm = inputElement.value.trim();
+
+    if (searchTerm.length === 0) {
+        prodsearch.innerHTML = '';
+        return;
+    }
+
+    fetch(`/search?term=${encodeURIComponent(searchTerm)}`)
+        .then(res => res.json())
+        .then(data => {
+            prodsearch.innerHTML = '';
+            if (data.length < 1) {
+                prodsearch.innerHTML = '<p>Sorry, nothing found.</p>';
+                return;
+            }
+            data.forEach((product) => {
+                const productLink = document.createElement('a');
+                productLink.href = `/productDetails/${product.id}`;
+                productLink.innerHTML = `<p>${product.name} - ${product.price}</p>`;
+                prodsearch.appendChild(productLink);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            prodsearch.innerHTML = '<p>Error fetching results.</p>';
+        });
+}
