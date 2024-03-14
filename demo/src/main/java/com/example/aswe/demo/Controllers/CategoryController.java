@@ -79,4 +79,12 @@ public class CategoryController {
         mav.addObject("products", products);
         return mav;
     }
+
+    @GetMapping("/productDetails/{id}")
+    public ModelAndView getProduct(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView("productDetails.html");
+        Product product = this.productRepository.findById(id);
+        mav.addObject("product", product);
+        return mav;
+    }
 }

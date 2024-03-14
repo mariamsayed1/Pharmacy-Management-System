@@ -26,21 +26,22 @@
     <body>
         <div th:insert="~{fragments/header :: header}"></div> 
 
-        <div class="productm">
+        <div class="productm" th:each="prod: ${product}">
             <div class="product-image">
-                <img src="/IMAGES/panadol.jpg" alt="Panadol">
+                <!-- <img src="/IMAGES/panadol.jpg" alt="Panadol"> -->
+                <img th:src="@{${'/IMAGES/'+prod.image}}" alt="#" />
             </div>
             <div class="product-details">
-                <h2>product_name</h2>
-                <h3 class="price">product price</h3>
+                <h2 th:text="${prod.name}"></h2>
+                <h3 class="price" th:text="${prod.price}"></h3>
                 <hr>
                 <br>
                 <p class="title1">Active Ingredient:</p>
-                <span>Paracetamol (Acetaminophen)</span>
+                <span th:text="${prod.activeIngredient}"></span>
                 <br>
                 <br>
                 <p class="title1">Medical Description:</p>
-                <p>Nonopioid analgesic used for the treatment of pain like mild muscle aches or headache.</p>
+                <p th:text="${prod.sideEffect}"></p>
                 <button class="btnm">Add To Cart</button>
 
             </div>

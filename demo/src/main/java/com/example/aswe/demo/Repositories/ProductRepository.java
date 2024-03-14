@@ -8,4 +8,5 @@ import com.example.aswe.demo.Models.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>{
     List<Product> findAllByCategoryId(int id);
+    Product findById(int id);
 }

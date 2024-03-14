@@ -34,8 +34,8 @@
                         <!-- <img src="/IMAGES/panadol.jpg"> -->
                         <img th:src="@{${'/IMAGES/'+product.image}}" alt="#" />
                         <div class="product">
-                            <a href="productDetails.html" class="product-title" th:text="${product.name}"></a>
-                            <!-- <a th:href="@{'/productDetails/' + ${product.id}}" class="product-title"></a> -->
+                            <!-- <a href="productDetails.html" class="product-title" th:text="${product.name}"></a> -->
+                            <a th:href="@{'/productDetails/' + ${product.id}}" class="product-title"th:text="${product.name}"></a>
                             <h5 class="price" th:text="${product.price}"></h5>
                             <button class="btnm">Add to Cart</button>
                         </div>
