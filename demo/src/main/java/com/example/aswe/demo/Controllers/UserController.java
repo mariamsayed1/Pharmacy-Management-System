@@ -104,7 +104,6 @@ public class UserController {
     }
 
     private boolean isValidEmail(String email) {
-        // Use a more sophisticated email validation regex if needed
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email != null && email.matches(emailRegex);
     }
@@ -157,7 +156,6 @@ public class UserController {
 
         // Redirect to the index page after successful login
         session.setAttribute("username", dbUser.getUsername());
-        // return "Welcome " + dbUser.getUsername();
         return new ModelAndView("redirect:/User/index");
 
     }
