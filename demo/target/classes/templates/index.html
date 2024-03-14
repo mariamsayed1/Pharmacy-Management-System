@@ -62,7 +62,7 @@
                 <!-- <ul>
                     <li th:each="category : ${categories}"> -->
                         <figure class="category" th:each="category : ${categories}">
-                            <a href="medications.html">
+                            <a th:href="@{'/category/' + ${category.id}}">
                                 <button class="categorybtn">
                                     <img th:src="@{${'/IMAGES/'+category.image}}" alt="${category.image}" />
                                     <div class="overlay">

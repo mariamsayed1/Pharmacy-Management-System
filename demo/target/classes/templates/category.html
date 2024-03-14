@@ -28,13 +28,15 @@
 
 
         <div class="wrapper">
-            <div class="title"> Medicines</div>
+            <div class="title" th:text="${category.name}"></div>
             <div class="products">
-                    <div class="product-container">
-                        <img src="/IMAGES/panadol.jpg">
+                    <div class="product-container" th:each="product: ${products}">
+                        <!-- <img src="/IMAGES/panadol.jpg"> -->
+                        <img th:src="@{${'/IMAGES/'+product.image}}" alt="#" />
                         <div class="product">
-                            <a href="productDetails.html" class="product-title">product_name </a>
-                            <h5 class="price">product price </h5>
+                            <a href="productDetails.html" class="product-title" th:text="${product.name}"></a>
+                            <!-- <a th:href="@{'/productDetails/' + ${product.id}}" class="product-title"></a> -->
+                            <h5 class="price" th:text="${product.price}"></h5>
                             <button class="btnm">Add to Cart</button>
                         </div>
                     </div>
