@@ -599,7 +599,7 @@ body{
     padding: 20px;
   }
   
-  .product-image{
+  .product-img{
     width: 500px;
     padding: 10px;
     margin: 10px;
@@ -608,7 +608,7 @@ body{
     border-radius: 10px;
   }
   
-  .product-image img{
+  .product-img img{
     width:100%;
     border-radius: 10px;
   }

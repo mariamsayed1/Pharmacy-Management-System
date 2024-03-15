@@ -55,14 +55,14 @@ public class UserController {
         ModelAndView mav = new ModelAndView("signup.html");
         mav.addObject("user", user);
 
-        if (isEmpty(user.getFullname()) || isEmpty(user.getUsername()) ||
-                isEmpty(user.getEmail()) || isEmpty(String.valueOf(user.getPhonenumber())) ||
-                isEmpty(user.getPassword()) || isEmpty(user.getConfirmpassword())) {
+        if (user.isEmpty(user.getFullname()) || user.isEmpty(user.getUsername()) ||
+            user.isEmpty(user.getEmail()) || user.isEmpty(String.valueOf(user.getPhonenumber())) ||
+            user.isEmpty(user.getPassword()) || user.isEmpty(user.getConfirmpassword())) {
             mav.addObject("emptyFieldsError", "Please fill in all fields");
             mav.addObject("hasEmptyFieldsError", true);
         } else {
 
-            if (!isValidEmail(user.getEmail())) {
+            if (!user.isValidEmail(user.getEmail())) {
                 mav.addObject("emailError", "Invalid email format");
                 mav.addObject("hasEmailError", true);
             }
@@ -71,7 +71,7 @@ public class UserController {
                 mav.addObject("hasUsernameTakenError", true);
             }
 
-            if (!isPasswordValid(user.getPassword(), user.getConfirmpassword())) {
+            if (!user.isPasswordValid(user.getPassword(), user.getConfirmpassword())) {
                 if (user.getPassword().length() < 8) {
                     mav.addObject("passwordLengthError", "Password is too short (minimum 8 characters)");
                     mav.addObject("hasPasswordLengthError", true);
@@ -99,23 +99,11 @@ public class UserController {
         return mav;
     }
 
-    private boolean isEmpty(String value) {
-        return value == null || value.trim().isEmpty();
-    }
-
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return email != null && email.matches(emailRegex);
-    }
-
-    private boolean isUsernameTaken(String username) {
+    public boolean isUsernameTaken(String username) {
         User existingUser = userRepository.findByUsername(username);
         return existingUser != null;
     }
 
-    private boolean isPasswordValid(String password, String confirmPassword) {
-        return password != null && password.length() >= 8 && password.equals(confirmPassword);
-    }
 
     @GetMapping("/login")
     public ModelAndView login() {
@@ -124,10 +112,10 @@ public class UserController {
         return mav;
     }
     @GetMapping("/index")
-    public ModelAndView viewindex(HttpSession session) {
-    ModelAndView mav = new ModelAndView("index.html");
-    mav.addObject ("username", (String) session.getAttribute("username"));
-    return mav;
+    public ModelAndView viewIndex(HttpSession session) {
+        ModelAndView mav = new ModelAndView("index.html");
+        mav.addObject ("username", (String) session.getAttribute("username"));
+        return mav;
     }
 
     @PostMapping("/login")

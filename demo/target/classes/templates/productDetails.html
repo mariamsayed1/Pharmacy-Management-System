@@ -27,7 +27,7 @@
         <div th:insert="~{fragments/header :: header}"></div> 
 
         <div class="productm" th:each="prod: ${product}">
-            <div class="product-image">
+            <div class="product-img">
                 <!-- <img src="/IMAGES/panadol.jpg" alt="Panadol"> -->
                 <img th:src="@{${'/IMAGES/'+prod.image}}" alt="#" />
             </div>
