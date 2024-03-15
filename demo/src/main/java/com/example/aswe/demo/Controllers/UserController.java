@@ -92,6 +92,9 @@ public class UserController {
 
             String encodedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
             user.setPassword(encodedPassword);
+            String encodedConfirmPassword = BCrypt.hashpw(user.getConfirmpassword(), BCrypt.gensalt(12));
+            user.setConfirmpassword(encodedConfirmPassword);
+            
             this.userRepository.save(user);
 
             return new ModelAndView("redirect:/User/login");
