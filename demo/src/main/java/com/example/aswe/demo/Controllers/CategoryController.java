@@ -49,10 +49,10 @@ public class CategoryController {
         return new ModelAndView("redirect:/addCategory");
     }
 
-    // @GetMapping("/admin")
-    // public ModelAndView index() {         
-    //     return new ModelAndView("admin.html");
-    //  }
+    @GetMapping("/admin")
+    public ModelAndView index() {         
+        return new ModelAndView("admin.html");
+     }
 
     @GetMapping("addProduct")
     public ModelAndView addProduct() {
