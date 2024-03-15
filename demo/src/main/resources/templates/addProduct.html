@@ -100,9 +100,11 @@
                 <form th:action="@{/addProduct}" th:object="${product}" method="POST">
                     <h2>Add Product</h2>
                     <hr>
+                    <br>
                     <div class="Form-input-box">
-                        <label for="name">Choose Category: </label>
+                        <label for="name">Choose Category:</label>
                         <select th:field="*{category}">
+                            <option value="1">Select Category:</option>
                             <option th:each="category: ${allCategories}" th:text="${category.name}" th:value="${category.id}"></option>
                         </select>
                     </div>
@@ -133,7 +135,8 @@
                         </div>
                     </div>
                     <div class="Form-button-container">
-                        <input type="Submit">
+                        <button type="submit">Submit</button>
+                        <!-- <input type="Submit"> -->
                     </div>
                 </form>
             </div>

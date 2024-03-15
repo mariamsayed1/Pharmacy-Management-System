@@ -29,7 +29,7 @@ public class CategoryController {
     private ProductRepository productRepository;
 
     @GetMapping("")
-    public ModelAndView getCategories() {
+    public ModelAndView getAllCategories() {
         ModelAndView mav = new ModelAndView("index.html");
         List<Category> categories = this.categoryRepository.findAll();
         mav.addObject("categories", categories);
@@ -85,6 +85,38 @@ public class CategoryController {
         ModelAndView mav = new ModelAndView("productDetails.html");
         Product product = this.productRepository.findById(id);
         mav.addObject("product", product);
+        return mav;
+    }
+
+    @GetMapping("/editProduct/{id}")
+    public ModelAndView editProduct(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView("editProduct.html");
+        Product product = this.productRepository.findById(id); 
+        List<Category> allCategories = this.categoryRepository.findAll();
+        mav.addObject("allCategories", allCategories);
+        mav.addObject("product", product);
+        return mav;
+    }
+
+    @PostMapping("/editProduct/{id}")
+    public ModelAndView editProduct(@PathVariable("id") int id, @ModelAttribute Product updatedProduct) {
+        Product existingProduct = this.productRepository.findById(id);
+        existingProduct.setName(updatedProduct.getName());
+        existingProduct.setPrice(updatedProduct.getPrice());
+        existingProduct.setImage(updatedProduct.getImage());
+        existingProduct.setActiveIngredient(updatedProduct.getActiveIngredient());
+        existingProduct.setSideEffect(updatedProduct.getSideEffect());
+        existingProduct.setQuantity(updatedProduct.getQuantity());
+        existingProduct.setCategory(updatedProduct.getCategory());
+
+        productRepository.save(existingProduct); 
+        return new ModelAndView("redirect:/index"); 
+    }
+    @GetMapping("/products")
+    public ModelAndView getAllProducts() {
+        ModelAndView mav = new ModelAndView("products.html");
+        List<Product> products = this.productRepository.findAll();
+        mav.addObject("products", products);
         return mav;
     }
 }
