@@ -560,7 +560,8 @@ body {
 	font-weight: bold;
 	margin: 5px 0;
 }
-#content .FormSection .FormContainer .FormContent .Form-input-box input{
+#content .FormSection .FormContainer .FormContent .Form-input-box input, 
+#content .FormSection .FormContainer .FormContent .Form-input-box select {
 	height: 40px;
 	width: 95%;
 	padding: 0 10px;
@@ -568,25 +569,60 @@ body {
 	border: 1px solid #ccc;
 	outline: none;
 }
-#content .FormSection .FormContainer .FormContent .Form-input-box input:is(:focus, :valid){
+
+#content .FormSection .FormContainer .FormContent .Form-input-box input:is(:focus, :valid),
+#content .FormSection .FormContainer .FormContent .Form-input-box select:focus {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
-#content .FormSection .FormContainer .Form-button-container{
-	margin: 15px 0;
+
+#content .FormSection .FormContainer .Form-button-container {
+    text-align: center; 
+    margin: 15px 0 30px; 
 }
-#content .FormSection .FormContainer .Form-button-container button{
-	width: 100%;
-	margin-top: 10px;
-	padding: 10px;
-	display: block;
-	font-size: 20px;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	background-image: linear-gradient(to right, #aa076b, #61045f);
+
+#content .FormSection .FormContainer .Form-button-container button {
+    background-color: #3c91e6; 
+    color: #ffffff; 
+    width: 50%; 
+    min-width: 150px; 
+    padding: 15px 30px; 
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
 }
-#content .FormSection .FormContainer .Form-button-container button:hover{
-	background-image: linear-gradient(to right, #61045f, #aa076b);
+
+#content .FormSection .FormContainer .Form-button-container button:hover {
+    background-color: #2c79c7; 
+}
+
+#content .FormSection .FormContainer .FormContent .Form-input-box {
+    position: relative; 
+}
+
+/* Change focus and hover styling for the select element */
+#content .FormSection .FormContainer .FormContent .Form-input-box select:focus,
+#content .FormSection .FormContainer .FormContent .Form-input-box select:hover {
+    border-color: #04a1ac;
+}
+
+#content .FormSection .FormContainer .FormContent .Form-input-box input[type="file"] {
+    height: 40px;
+    width: 95%;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 38px; 
+    cursor: pointer;
+    background: #FFFFFF;
+}
+
+/* Custom styles for number input arrow */
+#content .FormSection .FormContainer .FormContent .Form-input-box input[type='number']::-webkit-inner-spin-button,
+#content .FormSection .FormContainer .FormContent .Form-input-box input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: auto; /* Restores default appearance */
 }
 
 @media(max-width:600px){
