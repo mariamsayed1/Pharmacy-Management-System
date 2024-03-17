@@ -25,9 +25,12 @@
         <p th:if="${hasEmailTakenError}" th:style="${emailTakenError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${emailTakenError}"></p>
         <p th:if="${hasEmailError}" th:style="${emailError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${emailError}"></p>
 
+        <!-- <label for="phoneno"><b>Phone Number</b></label>
+        <input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number"> -->
+
         <label for="phoneno"><b>Phone Number</b></label>
-        <input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number">
-        
+<input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number">
+<p th:if="${hasPhoneNumberError}" th:style="${phoneNumberError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${phoneNumberError}"></p>
        <label for="password"><b>Password</b></label>
        <input type="password" th:field="*{password}" placeholder="Enter your password">
        <p th:if="${hasPasswordLengthError}" th:style="${passwordLengthError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordLengthError}"></p>

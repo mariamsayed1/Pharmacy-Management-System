@@ -81,13 +81,19 @@ public class UserController {
                     mav.addObject("passwordMatchError", "Passwords do not match");
                     mav.addObject("hasPasswordMatchError", true);
                 }
+               
+            }
+            if (String.valueOf(user.getPhonenumber()).length() != 11) {
+                mav.addObject("phoneNumberError", "Phone number must be 11 digits");
+                mav.addObject("hasPhoneNumberError", true);
             }
 
             if (mav.getModel().containsKey("hasUsernameTakenError") ||
                     mav.getModel().containsKey("hasEmailError") ||
                     mav.getModel().containsKey("hasPasswordLengthError") ||
                     mav.getModel().containsKey("hasPasswordMatchError") ||
-                    mav.getModel().containsKey("hasEmptyFieldsError"))
+                    mav.getModel().containsKey("hasEmptyFieldsError")||
+                    mav.getModel().containsKey("hasPhoneNumberError"))
                 return mav;
 
             String encodedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
