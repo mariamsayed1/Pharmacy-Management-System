@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Dose Pharmacy</title>
         <link rel="stylesheet" href="/CSS/styles.css">
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
@@ -27,7 +28,7 @@
         <header id="navbar" th:fragment="header">
             <nav>
                 <div class="logo">
-                    <a href="/"><img src="/IMAGES/logo1.jpg"></a>
+                    <a href="/"><img src="/IMAGES/logo.png"></a>
                 </div>
                 <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
                 <ul class="navigation-links" id="navigationLinks">
@@ -35,7 +36,8 @@
                         <div class="dropdown">
                             <button class="dropbtn">Shop</button>
                             <div class="dropdown-content">
-                                <a href="#">Medications</a>
+                                <!-- <div class="dropdown-content" th:each="category : ${categories}"></div> -->
+                                <a href="#" >Medications</a>
                                 <a href="#">Vitamins</a>
                                 <a href="#">Personal Care</a>
                                 <a href="#">Beauty Products</a>
@@ -45,11 +47,12 @@
                                 <a href="#">Medical Supplements</a>
                                 <a href="#">Hair Care</a>
                                 <a href="#">Perfumes</a>
+                                <!-- <a th:href="@{'/category/' + ${category.id}}" th:text="${category.name}"></a> -->
                             </div>
                     </li>
                     <li><a href="#">Order a Prescription</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <!-- <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About Us</a></li> -->
                     <!-- <li><a href="#">Search</a></li>    -->
                 </ul>
     
@@ -60,9 +63,19 @@
                   
                   
                 <ul class="right-links" id="rightLinks">
-                    <li class="split"><a href="cart1.php"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
-                    <li class="split"><a href="user.php">Welcome <span th:text="${username}"></a></li>
-                    <li class="split"><a href="logout.php"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+                    <li class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
+                    <!-- <li th:if="${userType == user}" class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li> -->
+
+                    <!-- <li class="split"><a href="#"><p>Welcome <span th:text="${username}">!</p></a></li> -->
+                    <li class="split"><a href="#">Welcome <span th:text="${username}"></a></li>
+                    <!-- <li th:if="${userType != null}" class="split"><a href="#">Welcome <span th:text="${username}"></a></li> -->
+
+                    <!-- <li th:if="${userType == admin}" class="split"><a href="/Admin">Admin</a></li>
+                    <li th:if="${userType == pharmacist}" class="split"><a href="/Pharmacist">Admin</a></li> -->
+
+                    <li class="split"><a href="/"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+                    <!-- <li th:if="${userType != null}" class="split"><a href="/"><i class="fa fa-fw fa-user"></i>Logout</a></li> -->
+
                     <li class="split"><a href="/User/login"><i class="fa fa-fw fa-user"></i>Login</a></li>
                 </ul>
             </nav>

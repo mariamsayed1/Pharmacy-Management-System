@@ -13,6 +13,6 @@ public class ProductController {
 
     @GetMapping("/search")
     public List<Product> searchProducts(@RequestParam String term) {
-    return productRepository.findByNameStartingWithIgnoreCase(term);
-}
+        return productRepository.findByNameStartingWithIgnoreCase(term);
+    }
 }

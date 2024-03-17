@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2024 at 03:37 PM
+-- Generation Time: Mar 17, 2024 at 07:10 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,12 +38,12 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `image`, `name`) VALUES
-(1, 'Genuphil.jpg', 'Medicines'),
+(1, 'panadol.jpg', 'Medicines'),
 (2, 'bet.jpg', 'vitamines'),
-(3, 'medicationsedited.jpg', 'Medicines'),
-(4, 'strepsils.jpg', 'Medicines'),
+(3, 'polyfresh1.jpg', 'Personal care'),
+(4, 'bbshower.jpg', 'Baby and mother'),
 (5, 'voltaren.jpeg', 'Medicines'),
-(6, 'vaseline.jpeg', 'medical');
+(9, 'laroche.jpg', 'Skin Care');
 
 -- --------------------------------------------------------
 
@@ -190,13 +190,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

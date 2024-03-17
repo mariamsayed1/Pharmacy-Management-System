@@ -59,120 +59,16 @@
             <p>Browse Products By</p>
             <h1> Our Categories</h1> 
             <div class="container">
-                <!-- <ul>
-                    <li th:each="category : ${categories}"> -->
-                        <figure class="category" th:each="category : ${categories}">
-                            <a th:href="@{'/category/' + ${category.id}}">
-                                <button class="categorybtn">
-                                    <img th:src="@{${'/IMAGES/'+category.image}}" alt="${category.image}" />
-                                    <div class="overlay">
-                                        <div class="text" th:text="${category.name}"></div>
-                                    </div>
-                                </button>
-                            </a>
-                        </figure> 
-                    <!-- </li>
-                </ul> -->
-                <!-- <figure class="category">
-                        <a href="medications.html">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/medicationsedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Medications</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/vitaminsedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Vitamins</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/Bodypersonalcareedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Personal Care</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/makeupedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Beauty Products</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/skincareedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Skin Care</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/cleaningproductsedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Cleaning products</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/motherbabycareedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Mother/Baby Care</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/medicalsuppliesedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Medical Suplments</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/haircareedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Hair Care</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure>
-                <figure class="category">
-                        <a href="#">
-                            <button class="categorybtn">
-                                <img src="/IMAGES/perfumesedited.jpg" alt="#">
-                                <div class="overlay">
-                                    <div class="text">Perfumes</div>
-                                </div>
-                            </button>
-                        </a>
-                </figure> -->
+                <figure class="category" th:each="category : ${categories}">
+                    <a th:href="@{'/category/' + ${category.id}}">
+                        <button class="categorybtn">
+                            <img th:src="@{${'/IMAGES/'+category.image}}" alt="${category.name}" />
+                            <div class="overlay">
+                                <div class="text" th:text="${category.name}"></div>
+                            </div>
+                        </button>
+                    </a>
+                </figure> 
             </div>
         </section>
         <br>
