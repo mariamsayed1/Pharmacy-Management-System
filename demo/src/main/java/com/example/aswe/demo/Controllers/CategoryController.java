@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -35,12 +33,6 @@ public class CategoryController {
         mav.addObject("categories", categories);
         return mav;
     }
-
-    // @GetMapping("/admin")
-    // public ModelAndView index() {         
-    //     return new ModelAndView("admin.html");
-    //  }
-
 
     @GetMapping("/category/{id}")
     public ModelAndView getCategory(@PathVariable("id") int id) {

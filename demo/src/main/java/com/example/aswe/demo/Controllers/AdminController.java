@@ -26,6 +26,20 @@ public class AdminController {
     @Autowired
     private ProductRepository productRepository;
 
+    @GetMapping("")
+    public ModelAndView adminIndex() {         
+        return new ModelAndView("admin.html");
+    }
+
+
+    @GetMapping("categories")
+    public ModelAndView getAllCategories() {
+        ModelAndView mav = new ModelAndView("listCategory.html");
+        List<Category> categories = this.categoryRepository.findAll();
+        mav.addObject("categories", categories);
+        return mav;
+    }
+
     @GetMapping("addCategory")
     public ModelAndView addCategories() {
         ModelAndView mav = new ModelAndView("addCategory.html");
@@ -37,6 +51,37 @@ public class AdminController {
     public ModelAndView saveCategory(@ModelAttribute Category category) {
         this.categoryRepository.save(category);
         return new ModelAndView("redirect:/Admin/addCategory");
+    }
+
+    @GetMapping("editCategory/{id}")
+    public ModelAndView editCategory(@PathVariable("id") int id) {
+        ModelAndView mav = new ModelAndView("editCategory.html");
+        Category category = this.categoryRepository.findById(id); 
+        mav.addObject("category", category);
+        return mav;
+    }
+    @PostMapping("editCategory/{id}")
+    public ModelAndView editCategory(@PathVariable("id") int id, @ModelAttribute Category updatedCategory) {
+        Category existingCategory = this.categoryRepository.findById(id);
+        existingCategory.setName(updatedCategory.getName());
+        existingCategory.setImage(updatedCategory.getImage());
+        categoryRepository.save(existingCategory); 
+        return new ModelAndView("redirect:/Admin/categories"); 
+    }
+
+    @GetMapping("deleteCategory/{id}")
+    public ModelAndView deleteCategory(@PathVariable("id") int id) {
+        this.categoryRepository.deleteById(id);
+        return new ModelAndView("redirect:/Admin/categories");
+    }
+
+    
+    @GetMapping("products")
+    public ModelAndView getAllProducts() {
+        ModelAndView mav = new ModelAndView("products.html");
+        List<Product> products = this.productRepository.findAll();
+        mav.addObject("products", products);
+        return mav;
     }
 
     @GetMapping("addProduct")
@@ -54,7 +99,7 @@ public class AdminController {
         return new ModelAndView("redirect:/Admin/addProduct");
     }
 
-    @GetMapping("/editProduct/{id}")
+    @GetMapping("editProduct/{id}")
     public ModelAndView editProduct(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView("editProduct.html");
         Product product = this.productRepository.findById(id); 
@@ -63,7 +108,7 @@ public class AdminController {
         mav.addObject("product", product);
         return mav;
     }
-    @PostMapping("/editProduct/{id}")
+    @PostMapping("editProduct/{id}")
     public ModelAndView editProduct(@PathVariable("id") int id, @ModelAttribute Product updatedProduct) {
         Product existingProduct = this.productRepository.findById(id);
         existingProduct.setName(updatedProduct.getName());
@@ -78,15 +123,7 @@ public class AdminController {
         return new ModelAndView("redirect:/Admin/products"); 
     }
 
-    @GetMapping("/products")
-    public ModelAndView getAllProducts() {
-        ModelAndView mav = new ModelAndView("products.html");
-        List<Product> products = this.productRepository.findAll();
-        mav.addObject("products", products);
-        return mav;
-    }
-
-    @GetMapping("/deleteProduct/{id}")
+    @GetMapping("deleteProduct/{id}")
     public ModelAndView deleteProduct(@PathVariable("id") int id) {
         this.productRepository.deleteById(id);
         return new ModelAndView("redirect:/Admin/products");

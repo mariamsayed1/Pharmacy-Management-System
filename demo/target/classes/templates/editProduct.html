@@ -14,13 +14,13 @@
     
     
         <!-- SIDEBAR -->
-        <section id="sidebar">
+        <section id="sidebar" th:fragment="sideBar">
             <a href="#" class="brand">
                 <i class='bx bxs-smile'></i>
                 <span class="text">AdminHub</span>
             </a>
             <ul class="side-menu top">
-                <li class="active">
+                <li>
                     <a href="#">
                         <i class='bx bxs-dashboard' ></i>
                         <span class="text">Dashboard</span>
@@ -48,6 +48,36 @@
                     <a href="#">
                         <i class='bx bxs-group' ></i>
                         <span class="text">Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/addProduct">
+                        <i class='bx bxs-plus-circle'></i>
+                        <span class="text">Add Product</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/addCategory">
+                        <i class='bx bxs-plus-circle'></i>
+                        <span class="text">Add Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-plus-circle'></i>
+                        <span class="text">Add pharmacist</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-edit-alt'></i>
+                        <span class="text">Edit Product</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-trash'></i>
+                        <span class="text">Delete Product</span>
                     </a>
                 </li>
             </ul>
@@ -100,20 +130,6 @@
                 <form th:action="@{/Admin/editProduct/{id}(id=${product.id})}" th:object="${product}" method="POST">
                     <h2>Edit Product</h2>
                     <hr>
-                    
-                    <!-- <form action="#" th:action="@{/edit/{id}(id=${product.id})}" method="post">
-                        <div>
-                            <label for="name">Product Name:</label>
-                            <input type="text" id="name" name="name" th:value="${product.name}" />
-                        </div>
-                        <div>
-                            <label for="price">Price:</label>
-                            <input type="text" id="price" name="price" th:value="${product.price}" />
-                        </div>
-                        
-                        <button type="submit">Save Changes</button>
-                    </form> -->
-
                     <div class="Form-input-box">
                         <br>
                         <label for="name">Choose Category: </label>

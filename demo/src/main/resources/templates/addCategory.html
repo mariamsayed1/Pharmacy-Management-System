@@ -14,13 +14,13 @@
     
     
         <!-- SIDEBAR -->
-        <section id="sidebar">
+        <section id="sidebar" th:fragment="sideBar">
             <a href="#" class="brand">
                 <i class='bx bxs-smile'></i>
                 <span class="text">AdminHub</span>
             </a>
             <ul class="side-menu top">
-                <li class="active">
+                <li>
                     <a href="#">
                         <i class='bx bxs-dashboard' ></i>
                         <span class="text">Dashboard</span>
@@ -48,6 +48,36 @@
                     <a href="#">
                         <i class='bx bxs-group' ></i>
                         <span class="text">Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/addProduct">
+                        <i class='bx bxs-plus-circle'></i>
+                        <span class="text">Add Product</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/Admin/addCategory">
+                        <i class='bx bxs-plus-circle'></i>
+                        <span class="text">Add Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-plus-circle'></i>
+                        <span class="text">Add pharmacist</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-edit-alt'></i>
+                        <span class="text">Edit Product</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-trash'></i>
+                        <span class="text">Delete Product</span>
                     </a>
                 </li>
             </ul>
