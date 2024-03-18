@@ -17,17 +17,47 @@ public class User {
     private String phonenumber;
     private String password;
     private String confirmpassword;
+    private String usertype;
     public User() {
     }
 
-    public User(String fullname, String username, String email, String phonenumber, String password, String confirmpassword) {
+    public User(Long id, String fullname, String username, String email, String phonenumber, String password, String confirmpassword, String usertype) {
+        this.id = id;
         this.fullname = fullname;
         this.username = username;
         this.email = email;
         this.phonenumber = phonenumber;
         this.password = password;
         this.confirmpassword = confirmpassword;
+        this.usertype = usertype;
     }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsertype() {
+        return this.usertype;
+    }
+
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
+    }
+
+    public User id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public User usertype(String usertype) {
+        setUsertype(usertype);
+        return this;
+    }
+
 
     public String getFullname() {
         return this.fullname;
@@ -112,7 +142,7 @@ public class User {
     }
 
     public boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String emailRegex = "^[a-zA-Z0-9_+&-]+(?:\\.[a-zA-Z0-9_+&-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email != null && email.matches(emailRegex);
     }
 
@@ -149,4 +179,3 @@ public class User {
     }
     
 }
-

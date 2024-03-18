@@ -63,20 +63,20 @@
                   
                   
                 <ul class="right-links" id="rightLinks">
-                    <li class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
-                    <!-- <li th:if="${userType == user}" class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li> -->
+                    <!-- <li class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li> -->
+                    <li th:if="${username != null}" class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
 
                     <!-- <li class="split"><a href="#"><p>Welcome <span th:text="${username}">!</p></a></li> -->
-                    <li class="split"><a href="#">Welcome: <span th:text="${username}"></a></li>
-                    <!-- <li th:if="${userType != null}" class="split"><a href="#">Welcome <span th:text="${username}"></a></li> -->
+                    <!-- <li class="split"><a href="#">Welcome: <span th:text="${username}"></a></li> -->
+                    <li th:if="${username != null}" class="split"><a href="#">Welcome <span th:text="${username}"></a></li>
 
-                    <!-- <li th:if="${userType == admin}" class="split"><a href="/Admin">Admin</a></li>
-                    <li th:if="${userType == pharmacist}" class="split"><a href="/Pharmacist">Admin</a></li> -->
+                    <li th:if="${username == 'admin'}" class="split"><a href="/Admin">Admin</a></li>
+                    <li th:if="${username == 'pharmacist'}" class="split"><a href="/Pharmacist">Admin</a></li>
 
-                    <li class="split"><a href="/"><i class="fa fa-fw fa-user"></i>Logout</a></li>
-                    <!-- <li th:if="${userType != null}" class="split"><a href="/"><i class="fa fa-fw fa-user"></i>Logout</a></li> -->
+                    <!-- <li class="split"><a href="/"><i class="fa fa-fw fa-user"></i>Logout</a></li> -->
+                    <li th:if="${username != null}" class="split"><a href="/logout"><i class="fa fa-fw fa-user"></i>Logout</a></li>
 
-                    <li class="split"><a href="/User/login"><i class="fa fa-fw fa-user"></i>Login</a></li>
+                    <li class="split"><a href="/login"><i class="fa fa-fw fa-user"></i>Login</a></li>
                 </ul>
             </nav>
         </header>

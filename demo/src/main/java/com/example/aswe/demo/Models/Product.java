@@ -13,27 +13,34 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private int price;
+    private double price;
     private String image;
     private String activeIngredient;
     private String sideEffect;
+    private String description;
     private int quantity;
+    private String prodDate;
+    private String expDate;
 
     @ManyToOne
     private Category category;
 
 
+
     public Product() {
     }
 
-    public Product(int id, String name, int price, String image, String activeIngredient, String sideEffect, int quantity, Category category) {
+    public Product(int id, String name, double price, String image, String activeIngredient, String sideEffect, String description, int quantity, String prodDate, String expDate, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
         this.activeIngredient = activeIngredient;
         this.sideEffect = sideEffect;
+        this.description = description;
         this.quantity = quantity;
+        this.prodDate = prodDate;
+        this.expDate = expDate;
         this.category = category;
     }
 
@@ -53,11 +60,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return this.price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -85,12 +92,36 @@ public class Product {
         this.sideEffect = sideEffect;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getQuantity() {
         return this.quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getProdDate() {
+        return this.prodDate;
+    }
+
+    public void setProdDate(String prodDate) {
+        this.prodDate = prodDate;
+    }
+
+    public String getExpDate() {
+        return this.expDate;
+    }
+
+    public void setExpDate(String expDate) {
+        this.expDate = expDate;
     }
 
     public Category getCategory() {
@@ -111,7 +142,7 @@ public class Product {
         return this;
     }
 
-    public Product price(int price) {
+    public Product price(double price) {
         setPrice(price);
         return this;
     }
@@ -131,8 +162,23 @@ public class Product {
         return this;
     }
 
+    public Product description(String description) {
+        setDescription(description);
+        return this;
+    }
+
     public Product quantity(int quantity) {
         setQuantity(quantity);
+        return this;
+    }
+
+    public Product prodDate(String prodDate) {
+        setProdDate(prodDate);
+        return this;
+    }
+
+    public Product expDate(String expDate) {
+        setExpDate(expDate);
         return this;
     }
 
@@ -140,7 +186,10 @@ public class Product {
         setCategory(category);
         return this;
     }
-
+    public boolean isEmpty(String value) {
+        return value == null || value.trim().isEmpty();
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -149,12 +198,12 @@ public class Product {
             return false;
         }
         Product product = (Product) o;
-        return id == product.id && Objects.equals(name, product.name) && price == product.price && Objects.equals(image, product.image) && Objects.equals(activeIngredient, product.activeIngredient) && Objects.equals(sideEffect, product.sideEffect) && quantity == product.quantity && Objects.equals(category, product.category);
+        return id == product.id && Objects.equals(name, product.name) && price == product.price && Objects.equals(image, product.image) && Objects.equals(activeIngredient, product.activeIngredient) && Objects.equals(sideEffect, product.sideEffect) && Objects.equals(description, product.description) && quantity == product.quantity && Objects.equals(prodDate, product.prodDate) && Objects.equals(expDate, product.expDate) && Objects.equals(category, product.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, image, activeIngredient, sideEffect, quantity, category);
+        return Objects.hash(id, name, price, image, activeIngredient, sideEffect, description, quantity, prodDate, expDate, category);
     }
 
     @Override
@@ -166,9 +215,13 @@ public class Product {
             ", image='" + getImage() + "'" +
             ", activeIngredient='" + getActiveIngredient() + "'" +
             ", sideEffect='" + getSideEffect() + "'" +
+            ", description='" + getDescription() + "'" +
             ", quantity='" + getQuantity() + "'" +
+            ", prodDate='" + getProdDate() + "'" +
+            ", expDate='" + getExpDate() + "'" +
             ", category='" + getCategory() + "'" +
             "}";
     }
+    
     
 }

@@ -11,7 +11,7 @@
     </head>
     <body>
 
-    <form th:action="@{/User/signup}" th:object="${user}" method="post">
+    <form th:action="@{/signup}" th:object="${user}" method="post">
         <h1> Sign Up</h1>
         <label for="fullname"><b>Full Name</b></label>
         <input type="text" th:field="*{fullname}" placeholder="Enter your full name">
@@ -43,8 +43,11 @@
        <label th:if="${hasEmptyFieldsError}" style="color: red; text-decoration: underline;">Please fill in all fields</label>
         
         <!-- <input type="submit" value="Sign Up"> -->
+
+        <input type="hidden" name="usertype" value="client">
+
         <button type="submit">Sign Up</button>
-        <a href="/User/login">Already have an account? Log In</a>
+        <a href="/login">Already have an account? Log In</a>
     </form>
     </body>
 

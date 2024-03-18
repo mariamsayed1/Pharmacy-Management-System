@@ -62,6 +62,10 @@ public class Category {
         setImage(image);
         return this;
     }
+    
+    public boolean isEmpty(String value) {
+        return value == null || value.trim().isEmpty();
+    }
 
     @Override
     public boolean equals(Object o) {

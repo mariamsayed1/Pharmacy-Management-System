@@ -54,7 +54,9 @@ public class AdminController {
     }
     @PostMapping("addCategory")
     public ModelAndView saveCategory(@ModelAttribute Category category) {
-        this.categoryRepository.save(category);
+        if(!category.isEmpty(category.getName()) && category.isEmpty(category.getImage()) ){
+            this.categoryRepository.save(category);
+        }
         return new ModelAndView("redirect:/Admin/addCategory");
     }
 
@@ -80,26 +82,17 @@ public class AdminController {
         return new ModelAndView("redirect:/Admin/categories");
     }
 
-    
-    // @GetMapping("products")
-    // public ModelAndView getAllProducts() {
-    //     ModelAndView mav = new ModelAndView("products.html");
-    //     List<Product> products = this.productRepository.findAll();
-    //     mav.addObject("products", products);
-    //     return mav;
-    // }
-
     @GetMapping("products")
     public ModelAndView getAllProducts(@RequestParam(defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("products.html");
         Page<Product> products = this.productRepository.findAll(PageRequest.of(page-1, 3));
 
-        int totalPages = products.getTotalPages(); // Calculate total pages
+        int totalPages = products.getTotalPages();
 
         // List<Product> products = this.productRepository.findAll();
         mav.addObject("products", products);
         mav.addObject("currentPage", page);
-        mav.addObject("totalPages", totalPages); // Pass total pages to the view
+        mav.addObject("totalPages", totalPages); 
         return mav;
     }
 
@@ -114,7 +107,9 @@ public class AdminController {
     }
     @PostMapping("addProduct")
     public ModelAndView saveProduct(@ModelAttribute Product product) {
-        this.productRepository.save(product);
+        if(!product.isEmpty(product.getName()) && product.isEmpty(product.getImage()) && (product.getPrice()>0)){
+            this.productRepository.save(product);
+        }
         return new ModelAndView("redirect:/Admin/addProduct");
     }
 
