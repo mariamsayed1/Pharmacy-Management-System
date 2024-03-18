@@ -4,8 +4,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.aswe.demo.Models.Category;
+import com.example.aswe.demo.Models.Pharmacist;
 import com.example.aswe.demo.Models.Product;
 import com.example.aswe.demo.Repositories.CategoryRepository;
+import com.example.aswe.demo.Repositories.PharmacistRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
 
 import org.springframework.data.domain.Page;
@@ -30,6 +32,10 @@ public class AdminController {
 
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private PharmacistRepository pharmacistRepository;
+
 
     @GetMapping("")
     public ModelAndView adminIndex() {         
@@ -141,5 +147,17 @@ public class AdminController {
     public ModelAndView deleteProduct(@PathVariable("id") int id) {
         this.productRepository.deleteById(id);
         return new ModelAndView("redirect:/Admin/products");
+    }
+    @GetMapping("addPharmacist")
+    public ModelAndView addPharmacist() {
+        ModelAndView mav = new ModelAndView("addPharmacist.html");
+        Pharmacist newPharmacist = new Pharmacist();
+        mav.addObject("pharmacist", newPharmacist);
+        return mav;
+    }
+    @PostMapping("addPharmacist")
+    public ModelAndView savePharmacist(@ModelAttribute Pharmacist pharmacist) {
+        this.pharmacistRepository.save(pharmacist);
+        return new ModelAndView("redirect:/Pharmacist/addPharmacist");
     }
 }

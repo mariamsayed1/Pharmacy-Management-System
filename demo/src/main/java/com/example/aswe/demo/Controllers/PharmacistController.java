@@ -2,8 +2,10 @@ package com.example.aswe.demo.Controllers;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.example.aswe.demo.Models.Category;
+import com.example.aswe.demo.Models.Pharmacist;
 import com.example.aswe.demo.Models.Product;
 import com.example.aswe.demo.Repositories.CategoryRepository;
+import com.example.aswe.demo.Repositories.PharmacistRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/pharmacist")
+@RequestMapping("/Pharmacist")
 public class PharmacistController {
     @Autowired
     private CategoryRepository categoryRepository;
@@ -46,7 +48,7 @@ public class PharmacistController {
     @PostMapping("addCategory")
     public ModelAndView saveCategory(@ModelAttribute Category category) {
         this.categoryRepository.save(category);
-        return new ModelAndView("redirect:/pharmacist/addCategory");
+        return new ModelAndView("redirect:/Pharmacist/addCategory");
     }
 
     @GetMapping("editCategory/{id}")
@@ -62,13 +64,13 @@ public class PharmacistController {
         existingCategory.setName(updatedCategory.getName());
         existingCategory.setImage(updatedCategory.getImage());
         categoryRepository.save(existingCategory); 
-        return new ModelAndView("redirect:/pharmacist/categories"); 
+        return new ModelAndView("redirect:/Pharmacist/categories"); 
     }
 
     @GetMapping("deleteCategory/{id}")
     public ModelAndView deleteCategory(@PathVariable("id") int id) {
         this.categoryRepository.deleteById(id);
-        return new ModelAndView("redirect:/pharmacist/categories");
+        return new ModelAndView("redirect:/Pharmacist/categories");
     }
 
     
@@ -92,7 +94,7 @@ public class PharmacistController {
     @PostMapping("addProduct")
     public ModelAndView saveProduct(@ModelAttribute Product product) {
         this.productRepository.save(product);
-        return new ModelAndView("redirect:/pharmacist/addProduct");
+        return new ModelAndView("redirect:/Pharmacist/addProduct");
     }
 
     @GetMapping("editProduct/{id}")
@@ -116,13 +118,13 @@ public class PharmacistController {
         existingProduct.setCategory(updatedProduct.getCategory());
 
         productRepository.save(existingProduct); 
-        return new ModelAndView("redirect:/pharmacist/products"); 
+        return new ModelAndView("redirect:/Pharmacist/products"); 
     }
 
     @GetMapping("deleteProduct/{id}")
     public ModelAndView deleteProduct(@PathVariable("id") int id) {
         this.productRepository.deleteById(id);
-        return new ModelAndView("redirect:/pharmacist/products");
+        return new ModelAndView("redirect:/Pharmacist/products");
     }
 }
 

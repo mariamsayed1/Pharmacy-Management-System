@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/CSS/admin.css">
         <!-- <link rel="stylesheet" href="/CSS/styles.css"> -->
     
-        <title>AdminHub</title>
+        <title>Pharmacist</title>
         <style>
             
             .title {
@@ -130,11 +130,11 @@
         <section id="sidebar" th:fragment="sideBar">
             <a href="#" class="brand">
                 <i class='bx bxs-smile'></i>
-                <span class="text">AdminHub</span>
+                <span class="text">Pharmacist</span>
             </a>
             <ul class="side-menu top">
                 <li>
-                    <a href="#">
+                    <a href="Pharmacist">
                         <i class='bx bxs-dashboard' ></i>
                         <span class="text">Dashboard</span>
                     </a>
@@ -142,7 +142,7 @@
                 <li>
                     <a href="#">
                         <i class='bx bxs-shopping-bag-alt' ></i>
-                        <span class="text">My Store</span>
+                        <span class="text">My Pharmacy</span>
                     </a>
                 </li>
                 <li>
@@ -157,28 +157,16 @@
                         <span class="text">Message</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bxs-group' ></i>
-                        <span class="text">Team</span>
-                    </a>
-                </li>
                 <li class="active">
-                    <a href="/Admin/addProduct">
+                    <a href="/Pharmacist/addProduct">
                         <i class='bx bxs-plus-circle'></i>
                         <span class="text">Add Product</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/Admin/addCategory">
+                    <a href="/Pharmacist/addCategory">
                         <i class='bx bxs-plus-circle'></i>
                         <span class="text">Add Category</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bxs-plus-circle'></i>
-                        <span class="text">Add pharmacist</span>
                     </a>
                 </li>
                 <li>
@@ -195,12 +183,6 @@
                 </li>
             </ul>
             <ul class="side-menu">
-                <li>
-                    <a href="#">
-                        <i class='bx bxs-cog' ></i>
-                        <span class="text">Settings</span>
-                    </a>
-                </li>
                 <li>
                     <a href="#" class="logout">
                         <i class='bx bxs-log-out-circle' ></i>
@@ -250,8 +232,8 @@
                             <!-- <a th:href="@{'/productDetails/' + ${product.id}}" class="product-title"th:text="${product.name}"></a> -->
                             <h5 class="price" th:text="${product.price}"></h5>
                             <br>
-                            <a class="btnm" th:href="@{'/Admin/editProduct/' + ${product.id}}">Edit</a>
-                            <a class="btnm" th:href="@{'/Admin/deleteProduct/' + ${product.id}}">Delete</a>
+                            <a class="btnm" th:href="@{'/Pharmacist/editProduct/' + ${product.id}}">Edit</a>
+                            <a class="btnm" th:href="@{'/Pharmacist/deleteProduct/' + ${product.id}}">Delete</a>
                             <!-- <button type="submit" onclick="return confirm('Are you sure you want to delete this product?')" class="btnm">Delete<a th:href="@{'/Admin/deleteProduct/' + ${product.id}}"></a></button> -->
                         </div>
                     </div>
