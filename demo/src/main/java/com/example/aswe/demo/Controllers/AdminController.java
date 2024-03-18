@@ -60,7 +60,7 @@ public class AdminController {
     }
     @PostMapping("addCategory")
     public ModelAndView saveCategory(@ModelAttribute Category category) {
-        if(!category.isEmpty(category.getName()) && category.isEmpty(category.getImage()) ){
+        if(!category.isEmpty(category.getName()) && !category.isEmpty(category.getImage()) ){
             this.categoryRepository.save(category);
         }
         return new ModelAndView("redirect:/Admin/addCategory");
@@ -113,7 +113,7 @@ public class AdminController {
     }
     @PostMapping("addProduct")
     public ModelAndView saveProduct(@ModelAttribute Product product) {
-        if(!product.isEmpty(product.getName()) && product.isEmpty(product.getImage()) && (product.getPrice()>0)){
+        if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getImage()) && (product.getPrice()>0)){
             this.productRepository.save(product);
         }
         return new ModelAndView("redirect:/Admin/addProduct");
@@ -158,6 +158,6 @@ public class AdminController {
     @PostMapping("addPharmacist")
     public ModelAndView savePharmacist(@ModelAttribute Pharmacist pharmacist) {
         this.pharmacistRepository.save(pharmacist);
-        return new ModelAndView("redirect:/Pharmacist/addPharmacist");
+        return new ModelAndView("redirect:/Admin/addPharmacist");
     }
 }
