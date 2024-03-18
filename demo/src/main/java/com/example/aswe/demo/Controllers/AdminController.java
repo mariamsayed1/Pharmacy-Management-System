@@ -8,6 +8,10 @@ import com.example.aswe.demo.Models.Product;
 import com.example.aswe.demo.Repositories.CategoryRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/Admin")
@@ -76,11 +81,25 @@ public class AdminController {
     }
 
     
+    // @GetMapping("products")
+    // public ModelAndView getAllProducts() {
+    //     ModelAndView mav = new ModelAndView("products.html");
+    //     List<Product> products = this.productRepository.findAll();
+    //     mav.addObject("products", products);
+    //     return mav;
+    // }
+
     @GetMapping("products")
-    public ModelAndView getAllProducts() {
+    public ModelAndView getAllProducts(@RequestParam(defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("products.html");
-        List<Product> products = this.productRepository.findAll();
+        Page<Product> products = this.productRepository.findAll(PageRequest.of(page-1, 3));
+
+        int totalPages = products.getTotalPages(); // Calculate total pages
+
+        // List<Product> products = this.productRepository.findAll();
         mav.addObject("products", products);
+        mav.addObject("currentPage", page);
+        mav.addObject("totalPages", totalPages); // Pass total pages to the view
         return mav;
     }
 
