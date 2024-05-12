@@ -22,7 +22,6 @@ import com.example.aswe.demo.Repositories.CategoryRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
 import com.example.aswe.demo.Repositories.UserRepository;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -218,4 +217,65 @@ public class IndexController {
         return mav;
     }
    
+@GetMapping("/profile")
+public ModelAndView showUserProfile(HttpSession session) {
+    ModelAndView mav = new ModelAndView("profile.html");
+    String username = (String) session.getAttribute("username");
+    mav.addObject("username", username);
+    return mav;
+}
+
+
+@PostMapping("/profile")
+public ModelAndView updateProfile(@RequestParam("newUsername") String newUsername,
+                                   @RequestParam("newFullname") String newFullname,
+                                   @RequestParam("newEmail") String newEmail,
+                                   @RequestParam("newPhoneNumber") String newPhoneNumber,
+                                   HttpSession session) {
+    String username = (String) session.getAttribute("username");
+    if (username != null) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            user.setUsername(newUsername);
+            user.setFullname(newFullname);
+            user.setEmail(newEmail);
+            user.setPhonenumber(newPhoneNumber);
+            userRepository.save(user);
+            session.setAttribute("username", newUsername);
+        }
+    }
+    return new ModelAndView("redirect:/profile");
+}
+@PostMapping("/profile/updatePassword")
+public ModelAndView updatePassword(@RequestParam("oldPassword") String oldPassword,
+                                   @RequestParam("newPassword") String newPassword,
+                                   HttpSession session) {
+    String username = (String) session.getAttribute("username");
+    if (username != null) {
+        User user = userRepository.findByUsername(username);
+        if (user != null && BCrypt.checkpw(oldPassword, user.getPassword())) {
+            // Check if the new password is not empty and meets any other criteria
+            if (newPassword != null && !newPassword.isEmpty()) {
+                // Encrypt the new password
+                String encodedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt(12));
+                // Update the user's password
+                user.setPassword(encodedPassword);
+                userRepository.save(user);
+            } else {
+                // Handle empty new password error
+                ModelAndView mav = new ModelAndView("profile.html");
+                mav.addObject("passwordUpdateError", "New password cannot be empty");
+                return mav;
+            }
+        } else {
+            // Handle incorrect old password error
+            ModelAndView mav = new ModelAndView("profile.html");
+            mav.addObject("passwordUpdateError", "Incorrect old password");
+            return mav;
+        }
+    }
+    // Redirect back to the profile page
+    return new ModelAndView("redirect:/profile");
+}
+
 }

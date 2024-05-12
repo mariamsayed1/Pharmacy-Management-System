@@ -54,6 +54,7 @@
                     <!-- <li><a href="blog.html">Blog</a></li>
                     <li><a href="about.html">About Us</a></li> -->
                     <!-- <li><a href="#">Search</a></li>    -->
+                   
                 </ul>
     
                 <div th:fragment="search-bar">
@@ -61,14 +62,14 @@
                     <div id="prodsearch"><!-- Search results will appear here --></div>
                 </div>
                   
-                  
+                
                 <ul class="right-links" id="rightLinks">
                     <!-- <li class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li> -->
                     <li th:if="${username != null}" class="split"><a href="cart.html"><i class="fa fa-fw fa-cart-plus"></i>Cart</a></li>
 
                     <!-- <li class="split"><a href="#"><p>Welcome <span th:text="${username}">!</p></a></li> -->
                     <!-- <li class="split"><a href="#">Welcome: <span th:text="${username}"></a></li> -->
-                    <li th:if="${username != null}" class="split"><a href="#">Welcome <span th:text="${username}"></a></li>
+                    <li th:if="${username != null}" class="split"><a href="/profile">Welcome <span th:text="${username}"></a></li>
 
                     <li th:if="${username == 'admin'}" class="split"><a href="/Admin">Admin</a></li>
                     <li th:if="${username == 'pharmacist'}" class="split"><a href="/Pharmacist">Admin</a></li>
