@@ -277,5 +277,18 @@ public ModelAndView updatePassword(@RequestParam("oldPassword") String oldPasswo
     // Redirect back to the profile page
     return new ModelAndView("redirect:/profile");
 }
+@PostMapping("/profile/delete")
+public ModelAndView deleteAccount(HttpSession session) {
+    String username = (String) session.getAttribute("username");
+    if (username != null) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            userRepository.delete(user);
+            session.invalidate(); // Invalidate the session after deleting the account
+        }
+    }
+    return new ModelAndView("redirect:/index"); // Redirect to login page after deletion
+}
+
 
 }
