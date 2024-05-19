@@ -6,18 +6,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.aswe.demo.Models.Category;
 import com.example.aswe.demo.Models.Pharmacist;
 import com.example.aswe.demo.Models.Product;
+import com.example.aswe.demo.Models.UserLog;
 import com.example.aswe.demo.Repositories.CategoryRepository;
 import com.example.aswe.demo.Repositories.PharmacistRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
+import com.example.aswe.demo.Repositories.UserLogRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +36,11 @@ public class AdminController {
     
     @Autowired
     private PharmacistRepository pharmacistRepository;
+    
+      @Autowired
+    private UserLogRepository userLogRepository;
 
-
+   
     @GetMapping("")
     public ModelAndView adminIndex() {         
         return new ModelAndView("admin.html");
@@ -159,5 +163,12 @@ public class AdminController {
     public ModelAndView savePharmacist(@ModelAttribute Pharmacist pharmacist) {
         this.pharmacistRepository.save(pharmacist);
         return new ModelAndView("redirect:/Admin/addPharmacist");
+    }
+    @GetMapping("/logs")
+    public ModelAndView getAllUserLogs() {
+    ModelAndView mav = new ModelAndView("logs.html");
+    List<UserLog> userLogs = this.userLogRepository.findAll();
+    mav.addObject("Logs", userLogs);
+    return mav;
     }
 }
