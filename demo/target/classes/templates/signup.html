@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="/CSS/login.css">
+    
+    </head>
+    <body>
+
+    <form th:action="@{/signup}" th:object="${user}" method="post">
+        <h1> Sign Up</h1>
+        <label for="fullname"><b>Full Name</b></label>
+        <input type="text" th:field="*{fullname}" placeholder="Enter your full name">
+        
+        <label for="username"><b>Username</b></label>
+        <input type="text" th:field="*{username}" placeholder="Enter your username">
+        <p th:if="${hasUsernameTakenError}" th:style="${usernameTakenError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${usernameTakenError}"></p>
+        
+        <label for="email"><b>Email</b></label>
+        <input type="text" th:field="*{email}" placeholder="Enter your email">
+        <p th:if="${hasEmailTakenError}" th:style="${emailTakenError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${emailTakenError}"></p>
+        <p th:if="${hasEmailError}" th:style="${emailError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${emailError}"></p>
+
+        <!-- <label for="phoneno"><b>Phone Number</b></label>
+        <input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number"> -->
+
+        <label for="phoneno"><b>Phone Number</b></label>
+<input type="text" th:field="*{phonenumber}" placeholder="Enter your phone number">
+<p th:if="${hasPhoneNumberError}" th:style="${phoneNumberError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${phoneNumberError}"></p>
+       <label for="password"><b>Password</b></label>
+       <input type="password" th:field="*{password}" placeholder="Enter your password">
+       <p th:if="${hasPasswordLengthError}" th:style="${passwordLengthError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordLengthError}"></p>
+       <p th:if="${hasPasswordMatchError}" th:style="${passwordMatchError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordMatchError}"></p>
+
+       <label for="confirmpassword"><b>Confirm Password</b></label>
+       <input type="password" th:field="*{confirmpassword}" placeholder="Confirm your password">
+       <p th:if="${hasPasswordMatchError}" th:style="${passwordMatchError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordMatchError}"></p>
+
+       <label th:if="${hasEmptyFieldsError}" style="color: red; text-decoration: underline;">Please fill in all fields</label>
+        
+        <!-- <input type="submit" value="Sign Up"> -->
+
+        <input type="hidden" name="usertype" value="client">
+
+        <button type="submit">Sign Up</button>
+        <a href="/login">Already have an account? Log In</a>
+    </form>
+    </body>
+
+</html>

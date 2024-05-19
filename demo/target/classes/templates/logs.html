@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+     <!-- Boxicons -->
+     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+     <!-- My CSS -->
+     <link rel="stylesheet" href="/CSS/admin.css">
+    <title>Admin Logs</title>
+    <style>
+ 
+/* admin.css */
+
+/* Center the table container */
+.table-container {
+    width: 80%; /* Set the desired width */
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FFFFFF; /* White color for table background */
+    border: 1px solid #ddd; /* Add border for better visibility */
+}
+
+/* Style the table headings */
+th {
+    background-color: #f2f2f2; /* Light gray color for table header */
+    padding: 8px; /* Adjust padding */
+    text-align: center;
+}
+
+/* Style the table cells */
+td {
+    padding: 8px; /* Adjust padding */
+    text-align: center;
+}
+
+/* Center the h2 */
+h2 {
+    text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+    <h2>User Logs</h2>
+    <table>
+        <thead>
+            <tr>
+                <!-- <th>ID</th> -->
+                <th>User ID</th>
+                <th>Login Time</th>
+                <th>Page Visited</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="log : ${Logs}">
+                <!-- <td th:text="${log.id}"></td> -->
+                <td th:text="${log.userId}"></td>
+                <td th:text="${#dates.format(log.loginTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${log.pageVisited}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

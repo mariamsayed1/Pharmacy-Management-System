@@ -1,0 +1,86 @@
+<html xmlns:th="http://www.thymleaf.org">
+    <head>
+        <title>Shopping Cart</title>
+        <link rel="stylesheet" href="/CSS/cart.css">
+        <!-- <link rel="stylesheet" href="/CSS/styles.css">
+        <style>
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+    
+        </style> -->
+    </head>
+    <body>
+        <!-- <div th:replace="~{fragments/header :: header}"></div> -->
+        <div>  </div>
+        <h1>Shopping Cart</h1>
+        <table>
+            <tr>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+            </tr>
+            <tr>
+            <td>
+                <img class="product-image" src="/IMAGES/panadol.jpg" alt="Medicine 1"><br>
+            </td>
+            <td>Panadol</td>
+            <td>34.00 EGP</td>
+            <td>
+                <input class="quantity-input" type="number" value="2" min="1">
+            </td>
+            <td>34.00 EGP</td>
+            <td><span class="cart-item-remove">Remove</span></td>
+            </tr>
+            <tr>
+            <td>
+                <img class="product-image" src="/IMAGES/la-roche-posay-sunscreen.jpg" alt="Medicine 2"><br>
+            </td>
+            <td>La rouche posay sunscreen</td>
+            <td>425.00 EGP</td>
+            <td>
+                <input class="quantity-input" type="number" value="1" min="1">
+            </td>
+            <td>425.00 EGP</td>
+            <td><span class="cart-item-remove">Remove</span></td>
+            </tr>
+            <tr>
+            <td>
+                <img class="product-image" src="/IMAGES/omega3.jpg" alt="Medicine 3"><br>
+            </td>
+            <td>Omega 3</td>
+            <td>400.00 EGP</td>
+            <td>
+                <input class="quantity-input" type="number" value="3" min="1">
+            </td>
+            <td>400.00 EGP</td>
+            <td><span class="cart-item-remove">Remove</span></td>
+            </tr>
+        </table>
+        
+        <div class="cart-summary">
+            <div class="cart-summary-row">
+            <span class="cart-summary-label">Subtotal:</span>
+            <span class="cart-summary-value">859 EGP</span>
+            </div>
+            <div class="cart-summary-row">
+            <span class="cart-summary-label">Shipping:</span>
+            <span class="cart-summary-value">50 EGP</span>
+            </div>
+            <div class="cart-summary-row">
+            <span class="cart-summary-label cart-summary-total">Total:</span>
+            <span class="cart-summary-value cart-summary-total">909 EGP</span>
+            </div>
+            <a href="checkout.html" class="checkout-btn">Checkout</a>
+        </div>
+        
+        <!-- <div th:replace="~{fragments/footer :: footer}"></div> -->
+    </body>
+
+</html>
