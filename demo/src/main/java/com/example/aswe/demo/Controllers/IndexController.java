@@ -258,56 +258,69 @@ public class IndexController {
         mav.addObject("username", username);
         return mav;
     }
+
+
 @PostMapping("/profile")
 public ModelAndView updateProfile(@RequestParam("newUsername") String newUsername,
-                                   @RequestParam("newFullname") String newFullname,
-                                   @RequestParam("newEmail") String newEmail,
-                                   @RequestParam("newPhoneNumber") String newPhoneNumber,
-                                   HttpSession session) {
+                                  @RequestParam("newFullname") String newFullname,
+                                  @RequestParam("newEmail") String newEmail,
+                                  HttpSession session) {
+    ModelAndView mav = new ModelAndView("profile.html");
     String username = (String) session.getAttribute("username");
+
+    // Check if any field is empty
+    if (newUsername.isEmpty() || newFullname.isEmpty() || newEmail.isEmpty()) {
+        mav.addObject("emptyFieldError", "Please fill in all fields");
+        return mav;
+    }
+
     if (username != null) {
         User user = userRepository.findByUsername(username);
         if (user != null) {
+            if (!newUsername.equals(username) && isUsernameTaken(newUsername)) {
+                mav.addObject("usernameTakenError", "Username is already taken");
+                return mav;
+            }
             user.setUsername(newUsername);
             user.setFullname(newFullname);
             user.setEmail(newEmail);
-            user.setPhonenumber(newPhoneNumber);
             userRepository.save(user);
             session.setAttribute("username", newUsername);
         }
     }
-    return new ModelAndView("redirect:/profile");
+    return new ModelAndView("redirect:/");
 }
 @PostMapping("/profile/updatePassword")
 public ModelAndView updatePassword(@RequestParam("oldPassword") String oldPassword,
                                    @RequestParam("newPassword") String newPassword,
                                    HttpSession session) {
+    ModelAndView mav = new ModelAndView("profile.html");
     String username = (String) session.getAttribute("username");
+
+    // Check if any field is empty
+    if (oldPassword.isEmpty() || newPassword.isEmpty()) {
+        mav.addObject("emptyFieldError", "Please fill in all fields");
+        return mav;
+    }
+
     if (username != null) {
         User user = userRepository.findByUsername(username);
-        if (user != null && BCrypt.checkpw(oldPassword, user.getPassword())) {
-            // Check if the new password is not empty and meets any other criteria
-            if (newPassword != null && !newPassword.isEmpty()) {
-                // Encrypt the new password
-                String encodedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt(12));
-                // Update the user's password
-                user.setPassword(encodedPassword);
-                userRepository.save(user);
-            } else {
-                // Handle empty new password error
-                ModelAndView mav = new ModelAndView("profile.html");
-                mav.addObject("passwordUpdateError", "New password must be at least 8 characters");
+        if (user != null) {
+            if (!BCrypt.checkpw(oldPassword, user.getPassword())) {
+                mav.addObject("oldPasswordError", "Incorrect old password");
                 return mav;
             }
-        } else {
-            // Handle incorrect old password error
-            ModelAndView mav = new ModelAndView("profile.html");
-            mav.addObject("passwordUpdateError", "Incorrect old password");
-            return mav;
+            if (newPassword.length() < 8) {
+                mav.addObject("newPasswordLengthError", "New password must be at least 8 characters");
+                return mav;
+            }
+            String encodedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt(12));
+            user.setPassword(encodedPassword);
+            userRepository.save(user);
         }
     }
-        return new ModelAndView("redirect:/profile");
-    }
+    return new ModelAndView("redirect:/");
+}
 
 
 @PostMapping("/profile/delete")
@@ -320,7 +333,7 @@ public ModelAndView deleteAccount(HttpSession session) {
             session.invalidate(); // Invalidate the session after deleting the account
         }
     }
-    return new ModelAndView("redirect:/index"); // Redirect to login page after deletion
+    return new ModelAndView("redirect:/"); 
 }
 
 
