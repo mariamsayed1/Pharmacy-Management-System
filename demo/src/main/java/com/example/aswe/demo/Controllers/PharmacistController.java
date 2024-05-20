@@ -30,7 +30,7 @@ public class PharmacistController {
 
     @GetMapping("categories")
     public ModelAndView getAllCategories() {
-        ModelAndView mav = new ModelAndView("listCategory.html");
+        ModelAndView mav = new ModelAndView("listCategoryPh.html");
         List<Category> categories = this.categoryRepository.findAll();
         mav.addObject("categories", categories);
         return mav;
@@ -38,7 +38,7 @@ public class PharmacistController {
 
     @GetMapping("addCategory")
     public ModelAndView addCategories() {
-        ModelAndView mav = new ModelAndView("addCategory.html");
+        ModelAndView mav = new ModelAndView("addCategoryPh.html");
         Category newCategory = new Category();
         mav.addObject("category", newCategory);
         return mav;
@@ -51,7 +51,7 @@ public class PharmacistController {
 
     @GetMapping("editCategory/{id}")
     public ModelAndView editCategory(@PathVariable("id") int id) {
-        ModelAndView mav = new ModelAndView("editCategory.html");
+        ModelAndView mav = new ModelAndView("editCategoryPh.html");
         Category category = this.categoryRepository.findById(id); 
         mav.addObject("category", category);
         return mav;
@@ -74,7 +74,7 @@ public class PharmacistController {
     
     @GetMapping("products")
     public ModelAndView getAllProducts() {
-        ModelAndView mav = new ModelAndView("products.html");
+        ModelAndView mav = new ModelAndView("productsPh.html");
         List<Product> products = this.productRepository.findAll();
         mav.addObject("products", products);
         return mav;
@@ -82,7 +82,7 @@ public class PharmacistController {
 
     @GetMapping("addProduct")
     public ModelAndView addProduct() {
-        ModelAndView mav = new ModelAndView("addProduct.html");
+        ModelAndView mav = new ModelAndView("addProductPh.html");
         List<Category> allCategories = this.categoryRepository.findAll();
         mav.addObject("allCategories", allCategories);
         Product newProduct = new Product();
@@ -97,7 +97,7 @@ public class PharmacistController {
 
     @GetMapping("editProduct/{id}")
     public ModelAndView editProduct(@PathVariable("id") int id) {
-        ModelAndView mav = new ModelAndView("editProduct.html");
+        ModelAndView mav = new ModelAndView("editProductPh.html");
         Product product = this.productRepository.findById(id); 
         List<Category> allCategories = this.categoryRepository.findAll();
         mav.addObject("allCategories", allCategories);
