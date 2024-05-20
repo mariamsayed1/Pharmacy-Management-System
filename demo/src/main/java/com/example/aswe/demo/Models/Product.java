@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -19,18 +21,17 @@ public class Product {
     private String sideEffect;
     private String description;
     private int quantity;
-    private String prodDate;
-    private String expDate;
+    private LocalDate prodDate;
+    private LocalDate expDate;
 
     @ManyToOne
     private Category category;
 
 
-
     public Product() {
     }
 
-    public Product(int id, String name, double price, String image, String activeIngredient, String sideEffect, String description, int quantity, String prodDate, String expDate, Category category) {
+    public Product(int id, String name, double price, String image, String activeIngredient, String sideEffect, String description, int quantity, LocalDate prodDate, LocalDate expDate, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -108,19 +109,19 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getProdDate() {
+    public LocalDate getProdDate() {
         return this.prodDate;
     }
 
-    public void setProdDate(String prodDate) {
+    public void setProdDate(LocalDate prodDate) {
         this.prodDate = prodDate;
     }
 
-    public String getExpDate() {
+    public LocalDate getExpDate() {
         return this.expDate;
     }
 
-    public void setExpDate(String expDate) {
+    public void setExpDate(LocalDate expDate) {
         this.expDate = expDate;
     }
 
@@ -172,12 +173,12 @@ public class Product {
         return this;
     }
 
-    public Product prodDate(String prodDate) {
+    public Product prodDate(LocalDate prodDate) {
         setProdDate(prodDate);
         return this;
     }
 
-    public Product expDate(String expDate) {
+    public Product expDate(LocalDate expDate) {
         setExpDate(expDate);
         return this;
     }
@@ -186,9 +187,23 @@ public class Product {
         setCategory(category);
         return this;
     }
+
+
     public boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
+
+    public boolean isPriceValid(double price){
+        return getPrice() > 0;
+    }
+    public boolean isQuantityValid(int quantity){
+        return getQuantity() > 0;
+    }
+
+    public boolean isValidDate(LocalDate prodDate, LocalDate expDate){
+        return prodDate.isBefore(expDate);
+    }
+
     
     @Override
     public boolean equals(Object o) {
@@ -222,6 +237,5 @@ public class Product {
             ", category='" + getCategory() + "'" +
             "}";
     }
-    
     
 }

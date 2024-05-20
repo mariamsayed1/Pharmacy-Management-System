@@ -1,5 +1,6 @@
 package com.example.aswe.demo.Controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.aswe.demo.Models.Category;
 import com.example.aswe.demo.Models.Product;
 import com.example.aswe.demo.Models.User;
+import com.example.aswe.demo.Models.UserLog;
 import com.example.aswe.demo.Repositories.CategoryRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
+import com.example.aswe.demo.Repositories.UserLogRepository;
 import com.example.aswe.demo.Repositories.UserRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,6 +44,8 @@ public class IndexController {
     @Autowired
     private ProductRepository productRepository;
 
+      @Autowired
+    private UserLogRepository userLogRepository;
 
     // @GetMapping("/index")
     // public ModelAndView index(HttpSession session) {
@@ -65,7 +71,8 @@ public class IndexController {
     }
 
     @PostMapping("/signup")
-    public ModelAndView saveUser(@Validated @ModelAttribute User user, @RequestParam("usertype") String userType) {
+    public ModelAndView saveUser(@Validated @ModelAttribute User user, @RequestParam("usertype") String userType,HttpSession session,
+    HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("signup.html");
         mav.addObject("user", user);
 
@@ -117,7 +124,10 @@ public class IndexController {
             user.setUsertype(userType);
             this.userRepository.save(user);
 
-            return new ModelAndView("redirect:/login");
+            session.setAttribute("username", user.getUsername());
+            logUserActivity(session, request.getRequestURI());
+
+            return new ModelAndView("redirect:/");
         }
         return mav;
     }
@@ -147,7 +157,7 @@ public class IndexController {
 
     @PostMapping("/login")
     public ModelAndView loginProcess(@RequestParam("username") String username,
-            @RequestParam("password") String password, HttpSession session) {
+            @RequestParam("password") String password, HttpSession session,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("login.html");
 
         if (username == null || password == null) {
@@ -172,9 +182,32 @@ public class IndexController {
         // Redirect to the index page after successful login
         session.setAttribute("username", dbUser.getUsername());
         mav.addObject("usertype", dbUser.getUsertype());
+        logUserActivity(session, request.getRequestURI());
         return new ModelAndView("redirect:/");
 
     }
+    
+    
+    private void logUserActivity(HttpSession session, String pageVisited) {
+        String username = (String) session.getAttribute("username");
+    
+        // Skip logging if username is null or "admin"
+        if (username != null && !"admin".equals(username)) {
+            Date loginTime = new Date();
+    
+            UserLog userLog = new UserLog();
+            userLog.setUserId(username);
+            userLog.setLoginTime(loginTime);
+            userLog.setPageVisited(pageVisited);
+    
+            try {
+                userLogRepository.save(userLog);
+            } catch (Exception e) {
+                System.err.println("Failed to save user log: " + e.getMessage());
+            }
+        }
+    }
+    
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession session) {
         session.invalidate();
@@ -217,15 +250,14 @@ public class IndexController {
         return mav;
     }
    
-@GetMapping("/profile")
-public ModelAndView showUserProfile(HttpSession session) {
-    ModelAndView mav = new ModelAndView("profile.html");
-    String username = (String) session.getAttribute("username");
-    mav.addObject("username", username);
-    return mav;
-}
 
-
+    @GetMapping("/profile")
+    public ModelAndView showUserProfile(HttpSession session) {
+        ModelAndView mav = new ModelAndView("profile.html");
+        String username = (String) session.getAttribute("username");
+        mav.addObject("username", username);
+        return mav;
+    }
 @PostMapping("/profile")
 public ModelAndView updateProfile(@RequestParam("newUsername") String newUsername,
                                    @RequestParam("newFullname") String newFullname,
@@ -264,7 +296,7 @@ public ModelAndView updatePassword(@RequestParam("oldPassword") String oldPasswo
             } else {
                 // Handle empty new password error
                 ModelAndView mav = new ModelAndView("profile.html");
-                mav.addObject("passwordUpdateError", "New password cannot be empty");
+                mav.addObject("passwordUpdateError", "New password must be at least 8 characters");
                 return mav;
             }
         } else {
@@ -274,9 +306,10 @@ public ModelAndView updatePassword(@RequestParam("oldPassword") String oldPasswo
             return mav;
         }
     }
-    // Redirect back to the profile page
-    return new ModelAndView("redirect:/profile");
-}
+        return new ModelAndView("redirect:/profile");
+    }
+
+
 @PostMapping("/profile/delete")
 public ModelAndView deleteAccount(HttpSession session) {
     String username = (String) session.getAttribute("username");
@@ -292,3 +325,5 @@ public ModelAndView deleteAccount(HttpSession session) {
 
 
 }
+
+

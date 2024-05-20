@@ -11,6 +11,31 @@
 </head>
 
 <body>
+    <!-- <form th:action="@{/profile}" method="post">
+        <h1>User Profile</h1>
+        <label for="newUsername">New Username:</label>
+        <input type="text" id="newUsername" name="newUsername" placeholder="Enter new username">
+        <label for="newFullname">Full Name:</label>
+        <input type="text" id="newFullname" name="newFullname" placeholder="Enter new full name">
+        <label for="newEmail">Email:</label>
+        <input type="email" id="newEmail" name="newEmail" placeholder="Enter new email">
+        <label for="newPhoneNumber">Phone Number:</label>
+        <input type="text" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter new phone number"> 
+    
+        <label for="oldPassword">Old Password:</label>
+        <input type="password" id="oldPassword" name="oldPassword" placeholder="Enter current password">
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password">
+
+      
+        
+        <button type="submit">Update Profile</button>
+    
+       
+        <button type="submit" formaction="/profile/delete" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+    </form> -->
+    
+
     <form th:action="@{/profile}" method="post">
         <h1>User Profile</h1>
         <label for="newUsername">New Username:</label>
@@ -20,19 +45,22 @@
         <label for="newEmail">Email:</label>
         <input type="email" id="newEmail" name="newEmail" placeholder="Enter new email">
         <label for="newPhoneNumber">Phone Number:</label>
-        <input type="text" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter new phone number">
+        <input type="text" id="newPhoneNumber" name="newPhoneNumber" placeholder="Enter new phone number"> 
     
         <label for="oldPassword">Old Password:</label>
         <input type="password" id="oldPassword" name="oldPassword" placeholder="Enter current password">
+        <p th:if="${oldPasswordError}" style="color: red; text-decoration: underline;" th:text="${oldPasswordError}"></p>
+    
         <label for="newPassword">New Password:</label>
         <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password">
-        
-        <button type="submit">Update Profile</button>
+        <p th:if="${newPasswordLengthError}" style="color: red; text-decoration: underline;" th:text="${newPasswordLengthError}"></p>
     
-        <!-- Delete Account Button -->
-        <button type="submit" formaction="/profile/delete" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+        <button type="submit">Update Profile</button>
     </form>
+    
+
+     
     
     
 </body>
-</html>
+</html> 

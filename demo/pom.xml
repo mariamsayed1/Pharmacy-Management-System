@@ -36,29 +36,36 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>3.2.2</version>
 		</dependency>
+		<dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>4.5.4</version> 
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
-            <groupId>net.sourceforge.tess4j</groupId>
-            <artifactId>tess4j</artifactId>
-            <version>4.5.4</version> 
-        </dependency>
-	
-   <dependency>
-     <groupId>org.springframework.security</groupId>
-     <artifactId>spring-security-core</artifactId>
-     <version>5.1.6.RELEASE</version>
-   </dependency>
-   <dependency>
-<groupId>org.springframework.session</groupId>
-<artifactId>spring-session-jdbc</artifactId>
-</dependency>
- </dependencies>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-jdbc</artifactId>
+		</dependency>
+ 	</dependencies>
 
 	<build>
 		<plugins>
