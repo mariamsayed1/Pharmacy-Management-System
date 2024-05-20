@@ -37,8 +37,13 @@ public class AdminController {
     @Autowired
     private PharmacistRepository pharmacistRepository;
     
-      @Autowired
+    @Autowired
     private UserLogRepository userLogRepository;
+
+
+    // private static final List<String> ALLOWED_MIME_TYPES = Arrays.asList("image/jpeg", "image/jpg", "image/png", "image/webp");
+
+    String directory = "C:/Users/Prof. Mahmoud Sayed/Desktop/Pharmacy-Management-System/demo/src/main/resources/static/IMAGES/";
 
    
     @GetMapping("")
@@ -116,10 +121,88 @@ public class AdminController {
         return mav;
     }
     @PostMapping("addProduct")
-    public ModelAndView saveProduct(@ModelAttribute Product product) {
-        if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getImage()) && (product.getPrice()>0)){
-            this.productRepository.save(product);
+    public ModelAndView saveProduct(@ModelAttribute Product product, @RequestParam ("image") String image) {
+        // if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getImage()) && (product.getPrice()>0)){
+            // this.productRepository.save(product);
+        // }
+
+        ModelAndView mav = new ModelAndView("addProduct.html");
+
+        // byte[] contentBytes = product.getImage().getBytes();
+            
+        // Create a MockMultipartFile with the byte array
+        // MultipartFile image = new MockMultipartFile(product.getImage(), contentBytes);
+
+        // String contentType = image.getContentType();
+
+        // if(!product.isEmpty(product.getName())){
+        //     mav.addObject("nameError", "Invalid email format");
+        //         mav.addObject("hasNameError", true);
+        // }
+        // if(product.isEmpty(product.getActiveIngredient())){
+        //     mav.addObject("emailError", "Invalid email format");
+        //         mav.addObject("hasEmailError", true);
+        // }
+        if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getActiveIngredient())){
+            if(!product.isPriceValid(product.getPrice())){
+                mav.addObject("priceError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasPriceError", true);
+            }
+            if(!product.isQuantityValid(product.getQuantity())){
+                mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasQuantityError", true);
+            }
+            if(!product.isValidDate(product.getProdDate(), product.getExpDate())){
+                mav.addObject("dateError", "Invalid input: Expiry Date must be after Production Date");
+                mav.addObject("hasDateError", true);
+            }
+            // if (ALLOWED_MIME_TYPES.contains(contentType)) {
+
+            //     String imageName = image.getOriginalFilename();
+            //     Path imagePath = Paths.get(directory).resolve(imageName);
+            //     System.out.println("File Path: " + imagePath.toString());
+            //     if(!Files.exists(imagePath)){
+            //         try {
+            //                 Files.write(imagePath, image.getBytes());
+            //                 System.out.println("File uploaded successfully: " + imagePath.toString());
+
+            //             } catch (IOException e) {
+            //                 System.out.println("Error saving file: " + e.getMessage());
+            //             }
+            //     }else{
+            //         System.out.println("The image exists in the Images folder" );
+            //     }
+            // }else{
+            //     mav.addObject("imageError", "Invalid file type. Only JPEG, JPG, PNG, and WEBP files are allowed.");
+            //     mav.addObject("hasImageError", true);
+            // }
+
+                // byte[] decodedBytes = Base64.getDecoder().decode(image);
+        
+                // // You can generate a unique name for the file or use a fixed name
+                // // String imageName = image.getOriginalFilename();
+
+                // Path imagePath = Paths.get(directory).resolve(image);
+
+                // if(!Files.exists(imagePath)){
+                //     // Write the byte array to a file
+                //     try (FileOutputStream fos = new FileOutputStream(imagePath.toFile())) {
+                //         fos.write(decodedBytes);
+                //         System.out.println("File uploaded successfully: " + imagePath.toString());
+                //     }catch (IOException e) {
+                //         System.out.println("Error saving file: " + e.getMessage());
+                //     }
+                // }else{
+                //     System.out.println("The image exists in the Images folder" );
+                // }
+
+
+
+            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") || mav.getModel().containsKey("hasDateError") || mav.getModel().containsKey("hasImageError")) 
+                return mav;
         }
+
+        this.productRepository.save(product);
         return new ModelAndView("redirect:/Admin/addProduct");
     }
 
