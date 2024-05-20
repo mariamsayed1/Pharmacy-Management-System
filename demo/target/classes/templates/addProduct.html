@@ -92,7 +92,7 @@
                     <br>
                     <div class="Form-input-box">
                         <label for="name">Choose Category:</label>
-                        <select th:field="*{category}">
+                        <select th:field="*{category}" required>
                             <option value="1">Select Category:</option>
                             <option th:each="category: ${allCategories}" th:text="${category.name}" th:value="${category.id}"></option>
                         </select>
@@ -100,15 +100,16 @@
                     <div class="FormContent">
                         <div class="Form-input-box">
                             <label for="name">Product Name</label>
-                            <input type="text" th:field="*{name}" placeholder="Product Name">
+                            <input type="text" th:field="*{name}" placeholder="Product Name" required>
                         </div>
                         <div class="Form-input-box">
                             <label for="name">Product Price</label>
-                            <input type="text" th:field="*{price}" placeholder="Product Price">
+                            <input type="text" th:field="*{price}" placeholder="Product Price" required  title="Invalid input: Please enter a valid number">
+                            <p class="errorMessage" th:if="${hasPriceError}" th:text="${priceError}"></p>
                         </div>
                         <div class="Form-input-box">
                             <label for="name">Active Ingredient</label>
-                            <input type="text" th:field="*{activeIngredient}" placeholder="Active Ingredient">
+                            <input type="text" th:field="*{activeIngredient}" placeholder="Active Ingredient" required>
                         </div>
                         <div class="Form-input-box">
                             <label for="name">Side Effect</label>
@@ -116,11 +117,28 @@
                         </div>
                         <div class="Form-input-box">
                             <label for="name">Product Quantity</label>
-                            <input type="number" th:field="*{quantity}" placeholder="Product Quantity">
+                            <input type="number" th:field="*{quantity}" placeholder="Product Quantity" required>
+                            <p class="errorMessage" th:if="${hasQuantityError}" th:text="${quantityError}"></p>
+                        </div>
+
+                        <div class="Form-input-box">
+                            <label for="name">Product Description</label>
+                            <input type="text" th:field="*{description}" placeholder="Product Description">
                         </div>
                         <div class="Form-input-box">
+                            <label for="name">Product Production Date</label>
+                            <input type="date" th:field="*{prodDate}" placeholder="Product Production Date" required>
+                        </div>
+                        <div class="Form-input-box">
+                            <label for="name">Product Expiry Date</label>
+                            <input type="date" th:field="*{expDate}" placeholder="Product Expiry Date" required>
+                            <p class="errorMessage" th:if="${hasDateError}" th:text="${dateError}"></p>
+                        </div>
+                        
+                        <div class="Form-input-box">
                             <label>Add Product Image:</label>
-                            <input type="file" th:field="*{image}">
+                            <input type="file" th:field="*{image}" required>
+                            <!-- <p class="errorMessage" th:if="${hasImageError}" th:text="${imageError}"></p> -->
                         </div>
                     </div>
                     <div class="Form-button-container">
