@@ -7,70 +7,10 @@
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- My CSS -->
         <link rel="stylesheet" href="/CSS/admin.css">
+        <!-- <link rel="stylesheet" href="/CSS/styles.css"> -->
     
         <title>Admin</title>
-        <style>
-            h1 {
-                text-align: center; 
-                font-weight: bold;
-                font-size: 40px;
-                color: #3C91E6; 
-                margin-bottom: 20px; 
-                padding: 15px;
-            }
-
-            table {
-                width: 100%; 
-                margin: 20px auto; 
-                border-collapse: collapse; 
-            }
-
-            th, td {
-                text-align: center; 
-                padding: 18px 15px; 
-            }
-
-            tr {
-                border: 1px solid #ddd;
-            }
-
-            th {
-                background-color: #3C91E6; 
-                color: white;
-            }
-
-            td:nth-child(1) { 
-                font-weight: bold; /* Make category names bold */
-            }
-
-
-            img {
-                display: block; 
-                margin: 0 auto;
-                width: 100px; 
-                height: auto; 
-                border-radius: 10px;
-            }
-
-            .btnm{
-                border: none;
-                font-size: 16px;
-                border-radius: 10px;
-                color:#3c91e6;
-                background-color: #def2f19c;
-                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.20);
-                box-shadow: outset;
-                padding: 5px;
-                margin: 5px;
-                cursor: pointer;
-            }
-  
-            .btnm:hover{
-                color: white;
-                background-color: #2c79c7;
-            }
-
-        </style>
+        
     </head>
     <body>
     
@@ -94,12 +34,6 @@
                         <span class="text">My Pharmacy</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        <i class='bx bxs-group' ></i>
-                        <span class="text">Team</span>
-                    </a>
-                </li> -->
                 <li>
                     <a href="/Admin/addProduct">
                         <i class='bx bxs-plus-circle'></i>
@@ -118,7 +52,7 @@
                         <span class="text">Add Category</span>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a th:href="@{/Admin/categories}">
                         <i class="bx bxs-file-plus"></i>
                         <span class="text">Categories List</span>
@@ -130,7 +64,7 @@
                         <span class="text">Add Pharmacist</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/Admin/orders">
                         <i class='bx bxs-cart'></i>
                         <span class="text">View Orders</span>
@@ -181,31 +115,33 @@
             <!-- NAVBAR -->
     
             <!-- MAIN -->
-            <h1>All Categories</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="category: ${categories}">
-                        <td th:text="${category.name}"/>
-                        <td>
-                            <img th:src="@{${'/IMAGES/'+category.image}}" alt="#" />
-                        </td>
-                        <td>
-                            <a class="btnm" th:href="@{'/Admin/editCategory/' + ${category.id}}">Edit</a>
-                        </td>
-                        <td>
-                            <a class="btnm" th:href="@{'/Admin/deleteCategory/' + ${category.id}}">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Orders</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer ID</th>
+                                <th>Order Date</th>
+                                <th>Status</th>
+                                <th>Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="order : ${orders}">
+                                <td th:text="${order.orderId}"></td>
+                                <td th:text="${order.customerId}"></td>
+                                <td th:text="${order.orderDate}"></td>
+                                <td th:text="${order.status}"></td>
+                                <td th:text="${order.totalAmount}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <!-- MAIN -->
         </section>
         <!-- CONTENT -->
