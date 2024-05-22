@@ -1,0 +1,29 @@
+ <html xmlns:th="http://www.thymleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="/CSS/login.css">
+    </head> 
+
+    <body>
+        
+    <form th:action="@{/Pharmacist/login1}" method="post">
+        <h1> Log In</h1>
+        <label for="username"><b>Username</b></label>
+        <input type="text" name="username" placeholder="Enter your username">
+        <p style="color: red; text-decoration: underline;" th:if="${loginError != null && loginErrorField eq 'username'}" th:text="${loginError}"></p>
+    
+        <label for="password"><b>Password</b></label>
+        <input type="password" name="password" placeholder="Enter your password">
+        <p style="color: red; text-decoration: underline;" th:if="${loginError != null && loginErrorField eq 'password'}" th:text="${loginError}"></p>
+
+        <button type="submit">Log in</button>
+        
+    </form>
+   
+</body>
+</html>
+

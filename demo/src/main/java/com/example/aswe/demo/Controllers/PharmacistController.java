@@ -2,22 +2,32 @@ package com.example.aswe.demo.Controllers;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.example.aswe.demo.Models.Category;
+import com.example.aswe.demo.Models.Pharmacist;
 import com.example.aswe.demo.Models.Product;
 import com.example.aswe.demo.Repositories.CategoryRepository;
+import com.example.aswe.demo.Repositories.PharmacistRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
+
+
+import jakarta.servlet.http.HttpSession;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/Pharmacist")
 public class PharmacistController {
     @Autowired
     private CategoryRepository categoryRepository;
+     @Autowired
+    private PharmacistRepository pharmacistRepository;
 
     @Autowired
     private ProductRepository productRepository;
@@ -27,7 +37,43 @@ public class PharmacistController {
         return new ModelAndView("pharmacist.html");
     }
 
+    @GetMapping("/login1")
+    public ModelAndView login1() {
+        return new ModelAndView("login1.html");
+    }
 
+    @PostMapping("/login1")
+    public ModelAndView loginProcess(@RequestParam("username") String username,
+                                     @RequestParam("password") String password,
+                                     HttpSession session) {
+        ModelAndView mav = new ModelAndView("login1.html");
+
+        if (username == null || password == null) {
+            mav.addObject("loginError", "Please provide both username and password");
+            return mav;
+        }
+
+        Pharmacist dbPharmacist = pharmacistRepository.findByUsername(username);
+        if (dbPharmacist == null) {
+            // mav.addObject("loginError", "Username not found");
+            // return mav;
+            mav.addObject("loginError", "Username not found");
+            mav.addObject("loginErrorField", "username");
+            return mav;
+        }
+
+        boolean isPasswordMatched = BCrypt.checkpw(password, dbPharmacist.getPassword());
+        if (!isPasswordMatched) {
+            // mav.addObject("loginError", "Incorrect password");
+            // return mav;
+            mav.addObject("loginError", "Incorrect password");
+            mav.addObject("loginErrorField", "password");
+            return mav;
+        }
+
+        
+        return new ModelAndView("redirect:/Pharmacist");
+    }
     @GetMapping("categories")
     public ModelAndView getAllCategories() {
         ModelAndView mav = new ModelAndView("listCategoryPh.html");
