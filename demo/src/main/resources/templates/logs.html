@@ -8,40 +8,43 @@
     <title>Admin Logs</title>
     <style>
  
-/* admin.css */
+    /* Specific styles for user logs table */
+        .table-container {
+            width: 80%; /* Set the desired width */
+            margin: 0 auto; /* Center horizontally */
+        }
 
-/* Center the table container */
-.table-container {
-    width: 80%; /* Set the desired width */
-    margin: 0 auto; /* Center horizontally */
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #FFFFFF; /* White color for table background */
+            border: 1px solid #ddd; /* Add border for better visibility */
+        }
 
-/* Style the table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #FFFFFF; /* White color for table background */
-    border: 1px solid #ddd; /* Add border for better visibility */
-}
+        th, td {
+            padding: 12px; /* Adjust padding */
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
 
-/* Style the table headings */
-th {
-    background-color: #f2f2f2; /* Light gray color for table header */
-    padding: 8px; /* Adjust padding */
-    text-align: center;
-}
+        th {
+            background-color: #3C91E6; /* Blue color for table header */
+            color: white;
+            text-transform: uppercase;
+        }
 
-/* Style the table cells */
-td {
-    padding: 8px; /* Adjust padding */
-    text-align: center;
-}
+        tr:hover {
+            background-color: #f1f1f1; /* Light gray color on hover */
+        }
 
-/* Center the h2 */
-h2 {
-    text-align: center;
-}
-
+        h2 {
+            text-align: center;
+            color: #3C91E6; /* Blue color for the title */
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
 
     </style>
 </head>
