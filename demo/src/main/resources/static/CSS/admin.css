@@ -625,6 +625,58 @@ body {
     -webkit-appearance: auto; /* Restores default appearance */
 }
 
+/* Specific styles for orders table */
+.table-data .order {
+    flex-grow: 1;
+    flex-basis: 500px;
+    margin: 20px auto;
+}
+
+.table-data .order .head h3 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    color: #3C91E6;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.table-data .order table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--light);
+}
+
+.table-data .order table th,
+.table-data .order table td {
+    padding: 18px 15px;
+    text-align: center;
+}
+
+.table-data .order table th {
+    background-color: #3C91E6;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--grey);
+}
+
+.table-data .order table td {
+    font-size: 14px;
+    color: var(--dark);
+    border-bottom: 1px solid var(--grey);
+}
+
+.table-data .order table tbody tr:hover {
+    background: var(--grey);
+}
+
+/* Adjusting table row and cell styles */
+.table-data .order table tr td:first-child {
+    font-weight: bold; /* Make Order ID bold */
+}
+
+
 @media(max-width:600px){
 	#content .FormSection .FormContainer{
 		min-width: 280px;
