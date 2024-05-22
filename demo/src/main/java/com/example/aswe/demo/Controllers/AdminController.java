@@ -14,6 +14,8 @@ import com.example.aswe.demo.Repositories.UserLogRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -235,37 +237,57 @@ public class AdminController {
         this.productRepository.deleteById(id);
         return new ModelAndView("redirect:/Admin/products");
     }
-    @GetMapping("addPharmacist")
+    
+
+    @GetMapping("/addPharmacist")
     public ModelAndView addPharmacist() {
         ModelAndView mav = new ModelAndView("addPharmacist.html");
         Pharmacist newPharmacist = new Pharmacist();
         mav.addObject("pharmacist", newPharmacist);
         return mav;
     }
-    @PostMapping("addPharmacist")
+
+    @PostMapping("/addPharmacist")
     public ModelAndView savePharmacist(@ModelAttribute Pharmacist pharmacist) {
-        this.pharmacistRepository.save(pharmacist);
+        ModelAndView mav = new ModelAndView("addPharmacist.html");
+
+        // Validate password length
+        if (pharmacist.getPassword().length() < 8) {
+            mav.addObject("passwordLengthError", "Password is too short (minimum 8 characters)");
+            mav.addObject("hasPasswordLengthError", true);
+            mav.addObject("pharmacist", pharmacist);
+            return mav;
+        }
+
+        String hashedPassword = BCrypt.hashpw(pharmacist.getPassword(), BCrypt.gensalt());
+        pharmacist.setPassword(hashedPassword);
+        pharmacistRepository.save(pharmacist);
         return new ModelAndView("redirect:/Admin/addPharmacist");
     }
+
+    
+    
+    // @GetMapping("addPharmacist")
+    // public ModelAndView addPharmacist() {
+    //     ModelAndView mav = new ModelAndView("addPharmacist.html");
+    //     Pharmacist newPharmacist = new Pharmacist();
+    //     mav.addObject("pharmacist", newPharmacist);
+    //     return mav;
+    // }
+    // @PostMapping("addPharmacist")
+    // public ModelAndView savePharmacist(@ModelAttribute Pharmacist pharmacist) {
+    //     String hashedPassword = BCrypt.hashpw(pharmacist.getPassword(), BCrypt.gensalt());
+    //     pharmacist.setPassword(hashedPassword);
+    //     this.pharmacistRepository.save(pharmacist);
+    //     return new ModelAndView("redirect:/Admin/addPharmacist");
+    // }
+   
+    
     @GetMapping("/logs")
     public ModelAndView getAllUserLogs() {
     ModelAndView mav = new ModelAndView("logs.html");
     List<UserLog> userLogs = this.userLogRepository.findAll();
     mav.addObject("Logs", userLogs);
     return mav;
-    }
-
-    @GetMapping("pharmacists")
-    public ModelAndView getAllPharmacists() {
-        ModelAndView mav = new ModelAndView("listPharmacist.html");
-        List<Pharmacist> pharmacists = this.pharmacistRepository.findAll();
-        mav.addObject("pharmacists", pharmacists);
-        return mav;
-    }
-
-    @GetMapping("deletePharmacist/{id}")
-    public ModelAndView deletePharmacist(@PathVariable("id") int id) {
-        this.pharmacistRepository.deleteById(id);
-        return new ModelAndView("redirect:/Admin/pharmacists");
     }
 }
