@@ -254,4 +254,18 @@ public class AdminController {
     mav.addObject("Logs", userLogs);
     return mav;
     }
+
+    @GetMapping("pharmacists")
+    public ModelAndView getAllPharmacists() {
+        ModelAndView mav = new ModelAndView("listPharmacist.html");
+        List<Pharmacist> pharmacists = this.pharmacistRepository.findAll();
+        mav.addObject("pharmacists", pharmacists);
+        return mav;
+    }
+
+    @GetMapping("deletePharmacist/{id}")
+    public ModelAndView deletePharmacist(@PathVariable("id") int id) {
+        this.pharmacistRepository.deleteById(id);
+        return new ModelAndView("redirect:/Admin/pharmacists");
+    }
 }
