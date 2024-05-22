@@ -122,11 +122,11 @@
                     <div class="FormContent">
                         <div class="Form-input-box">
                             <label for="username">Username</label>
-                            <input type="text" th:field="*{username}" placeholder="Username">
+                            <input type="text" th:field="*{username}" placeholder="Username"required>
                         </div>
                         <div class="Form-input-box">
                             <label for="password">Password</label>
-                            <input type="password" th:field="*{password}" placeholder="Enter your password">
+                            <input type="password" th:field="*{password}" placeholder="Enter your password"required>
        <p th:if="${hasPasswordLengthError}" th:style="${passwordLengthError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordLengthError}"></p>
        <p th:if="${hasPasswordMatchError}" th:style="${passwordMatchError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordMatchError}"></p>
                         </div>
