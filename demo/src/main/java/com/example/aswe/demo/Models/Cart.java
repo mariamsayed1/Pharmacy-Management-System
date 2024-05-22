@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,19 +20,20 @@ public class Cart {
     private Double TotalPrice;
 
     @OneToMany
-    private Product product;
-
+    private List<Product> products;
+    
     @OneToOne
     private User user;
+
 
     public Cart() {
     }
 
-    public Cart(int ID, int cartQuantity, Double TotalPrice, Product product, User user) {
+    public Cart(int ID, int cartQuantity, Double TotalPrice, List<Product> products, User user) {
         this.ID = ID;
         this.cartQuantity = cartQuantity;
         this.TotalPrice = TotalPrice;
-        this.product = product;
+        this.products = products;
         this.user = user;
     }
 
@@ -58,12 +61,12 @@ public class Cart {
         this.TotalPrice = TotalPrice;
     }
 
-    public Product getProduct() {
-        return this.product;
+    public List<Product> getProducts() {
+        return this.products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public User getUser() {
@@ -89,8 +92,8 @@ public class Cart {
         return this;
     }
 
-    public Cart product(Product product) {
-        setProduct(product);
+    public Cart products(List<Product> products) {
+        setProducts(products);
         return this;
     }
 
@@ -107,12 +110,12 @@ public class Cart {
             return false;
         }
         Cart cart = (Cart) o;
-        return ID == cart.ID && cartQuantity == cart.cartQuantity && Objects.equals(TotalPrice, cart.TotalPrice) && Objects.equals(product, cart.product) && Objects.equals(user, cart.user);
+        return ID == cart.ID && cartQuantity == cart.cartQuantity && Objects.equals(TotalPrice, cart.TotalPrice) && Objects.equals(products, cart.products) && Objects.equals(user, cart.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, cartQuantity, TotalPrice, product, user);
+        return Objects.hash(ID, cartQuantity, TotalPrice, products, user);
     }
 
     @Override
@@ -121,9 +124,9 @@ public class Cart {
             " ID='" + getID() + "'" +
             ", cartQuantity='" + getCartQuantity() + "'" +
             ", TotalPrice='" + getTotalPrice() + "'" +
-            ", product='" + getProduct() + "'" +
+            ", products='" + getProducts() + "'" +
             ", user='" + getUser() + "'" +
             "}";
     }
-
+    
 }
