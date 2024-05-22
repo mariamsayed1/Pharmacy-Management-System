@@ -126,7 +126,9 @@
                         </div>
                         <div class="Form-input-box">
                             <label for="password">Password</label>
-                            <input type="text" th:field="*{password}" placeholder="Password">
+                            <input type="password" th:field="*{password}" placeholder="Enter your password">
+       <p th:if="${hasPasswordLengthError}" th:style="${passwordLengthError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordLengthError}"></p>
+       <p th:if="${hasPasswordMatchError}" th:style="${passwordMatchError != null} ? 'color: red; text-decoration: underline;' : ''" th:text="${passwordMatchError}"></p>
                         </div>
                         <input type="hidden" name="usertype" value="pharmacist">
                     </div>

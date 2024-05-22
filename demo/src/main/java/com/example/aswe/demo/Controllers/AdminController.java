@@ -218,8 +218,25 @@ public class AdminController {
         return mav;
     }
     @PostMapping("editProduct/{id}")
-    public ModelAndView editProduct(@PathVariable("id") int id, @ModelAttribute Product updatedProduct) {
+    public ModelAndView editProduct(@PathVariable("id") int id, @ModelAttribute Product updatedProduct, @RequestParam ("image") String image) {
         Product existingProduct = this.productRepository.findById(id);
+        ModelAndView mav = new ModelAndView("editProduct.html");
+
+        if(!updatedProduct.isEmpty(updatedProduct.getName()) && !updatedProduct.isEmpty(updatedProduct.getActiveIngredient())){
+            if(!updatedProduct.isPriceValid(updatedProduct.getPrice())){
+                mav.addObject("priceError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasPriceError", true);
+            }
+            if(!updatedProduct.isQuantityValid(updatedProduct.getQuantity())){
+                mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasQuantityError", true);
+            }
+            
+            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") ||  mav.getModel().containsKey("hasImageError")) 
+            return mav;
+    }
+
+
         existingProduct.setName(updatedProduct.getName());
         existingProduct.setPrice(updatedProduct.getPrice());
         existingProduct.setImage(updatedProduct.getImage());

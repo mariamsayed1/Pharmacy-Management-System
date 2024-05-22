@@ -82,6 +82,19 @@ public class PharmacistController {
         return mav;
     }
 
+    // @GetMapping("addCategory")
+    // public ModelAndView addCategories() {
+    //     ModelAndView mav = new ModelAndView("addCategoryPh.html");
+    //     Category newCategory = new Category();
+    //     mav.addObject("category", newCategory);
+    //     return mav;
+    // }
+    // @PostMapping("addCategory")
+    // public ModelAndView saveCategory(@ModelAttribute Category category) {
+    //     this.categoryRepository.save(category);
+    //     return new ModelAndView("redirect:/Pharmacist/addCategory");
+    // }
+
     @GetMapping("addCategory")
     public ModelAndView addCategories() {
         ModelAndView mav = new ModelAndView("addCategoryPh.html");
@@ -91,7 +104,9 @@ public class PharmacistController {
     }
     @PostMapping("addCategory")
     public ModelAndView saveCategory(@ModelAttribute Category category) {
-        this.categoryRepository.save(category);
+        if(!category.isEmpty(category.getName()) && !category.isEmpty(category.getImage()) ){
+            this.categoryRepository.save(category);
+        }
         return new ModelAndView("redirect:/Pharmacist/addCategory");
     }
 
@@ -135,11 +150,38 @@ public class PharmacistController {
         mav.addObject("product", newProduct);
         return mav;
     }
+    // @PostMapping("addProduct")
+    // public ModelAndView saveProduct(@ModelAttribute Product product) {
+    //     this.productRepository.save(product);
+    //     return new ModelAndView("redirect:/Pharmacist/addProduct");
+    // }
     @PostMapping("addProduct")
-    public ModelAndView saveProduct(@ModelAttribute Product product) {
-        this.productRepository.save(product);
-        return new ModelAndView("redirect:/Pharmacist/addProduct");
-    }
+    public ModelAndView saveProduct(@ModelAttribute Product product, @RequestParam ("image") String image) {
+        // if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getImage()) && (product.getPrice()>0)){
+            // this.productRepository.save(product);
+        // }
+
+        ModelAndView mav = new ModelAndView("addProductPh.html");
+    if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getActiveIngredient())){
+        if(!product.isPriceValid(product.getPrice())){
+            mav.addObject("priceError", "Invalid input: Number must be greater than 0.");
+            mav.addObject("hasPriceError", true);
+        }
+        if(!product.isQuantityValid(product.getQuantity())){
+            mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
+            mav.addObject("hasQuantityError", true);
+        }
+        if(!product.isValidDate(product.getProdDate(), product.getExpDate())){
+            mav.addObject("dateError", "Invalid input: Expiry Date must be after Production Date");
+            mav.addObject("hasDateError", true);
+        }
+        if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") || mav.getModel().containsKey("hasDateError") || mav.getModel().containsKey("hasImageError")) 
+        return mav;
+}
+
+this.productRepository.save(product);
+return new ModelAndView("redirect:/Pharmacist/products");
+}
 
     @GetMapping("editProduct/{id}")
     public ModelAndView editProduct(@PathVariable("id") int id) {
@@ -151,8 +193,25 @@ public class PharmacistController {
         return mav;
     }
     @PostMapping("editProduct/{id}")
-    public ModelAndView editProduct(@PathVariable("id") int id, @ModelAttribute Product updatedProduct) {
+    public ModelAndView editProduct(@PathVariable("id") int id, @ModelAttribute Product updatedProduct,@RequestParam ("image") String image) {
         Product existingProduct = this.productRepository.findById(id);
+
+        ModelAndView mav = new ModelAndView("editProductPh.html");
+
+        if(!updatedProduct.isEmpty(updatedProduct.getName()) && !updatedProduct.isEmpty(updatedProduct.getActiveIngredient())){
+            if(!updatedProduct.isPriceValid(updatedProduct.getPrice())){
+                mav.addObject("priceError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasPriceError", true);
+            }
+            if(!updatedProduct.isQuantityValid(updatedProduct.getQuantity())){
+                mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasQuantityError", true);
+            }
+            
+            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") ||  mav.getModel().containsKey("hasImageError")) 
+            return mav;
+    }
+
         existingProduct.setName(updatedProduct.getName());
         existingProduct.setPrice(updatedProduct.getPrice());
         existingProduct.setImage(updatedProduct.getImage());
