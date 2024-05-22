@@ -16,6 +16,8 @@
     <body>
         <!-- <div th:replace="~{fragments/header :: header}"></div> -->
         <div>  </div>
+    <form th:action="@{/cart}" th:object="${cart}" method="POST">
+
         <h1>Shopping Cart</h1>
         <table>
             <tr>
@@ -26,19 +28,23 @@
             <th>Subtotal</th>
             <th></th>
             </tr>
-            <tr>
+
+            <tr th:each="item : ${cart.items}">
             <td>
-                <img class="product-image" src="/IMAGES/panadol.jpg" alt="Medicine 1"><br>
+                <img class="product-image" th:src="@{${'/IMAGES/'+item.product.image}}" alt="${item.product.name}"><br>
             </td>
-            <td>Panadol</td>
-            <td>34.00 EGP</td>
+            <td th:text="${item.product.name}"></td>
+            <td th:text="${item.product.price}"></td>
             <td>
                 <input class="quantity-input" type="number" value="2" min="1">
             </td>
             <td>34.00 EGP</td>
-            <td><span class="cart-item-remove">Remove</span></td>
+            <!-- <a class="cart-item-remove" th:href="@{/remove-from-cart/{id}(id=${item.product.id})}">Remove</a> -->
+            <!-- <td><span class="cart-item-remove">Remove</span></td> -->
+            <td><a th:href="@{/remove-from-cart/{id}(id=${item.product.id})}">Remove</a></td>
+
             </tr>
-            <tr>
+            <!-- <tr>
             <td>
                 <img class="product-image" src="/IMAGES/la-roche-posay-sunscreen.jpg" alt="Medicine 2"><br>
             </td>
@@ -61,25 +67,28 @@
             </td>
             <td>400.00 EGP</td>
             <td><span class="cart-item-remove">Remove</span></td>
-            </tr>
+            </tr> -->
         </table>
         
         <div class="cart-summary">
             <div class="cart-summary-row">
-            <span class="cart-summary-label">Subtotal:</span>
-            <span class="cart-summary-value">859 EGP</span>
+            <!-- <span class="cart-summary-label">Subtotal:</span> -->
+            <span class="cart-summary-label cart-summary-total">Total:</span>
+
+            <span class="cart-summary-value"th:text="${total}"></span>
             </div>
-            <div class="cart-summary-row">
+            <!-- <div class="cart-summary-row">
             <span class="cart-summary-label">Shipping:</span>
             <span class="cart-summary-value">50 EGP</span>
             </div>
             <div class="cart-summary-row">
             <span class="cart-summary-label cart-summary-total">Total:</span>
             <span class="cart-summary-value cart-summary-total">909 EGP</span>
-            </div>
+            </div> -->
             <a href="checkout.html" class="checkout-btn">Checkout</a>
         </div>
-        
+    </form>
+
         <!-- <div th:replace="~{fragments/footer :: footer}"></div> -->
     </body>
 

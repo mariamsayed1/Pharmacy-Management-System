@@ -26,6 +26,8 @@
     <body>
         <div th:replace="~{fragments/header :: header}"></div>
 
+        <!-- <form th:action="@{}" th:object="${product}" method="POST"> -->
+
         <div class="productm" th:each="prod: ${product}">
             <div class="product-img">
                 <!-- <img src="/IMAGES/panadol.jpg" alt="Panadol"> -->
@@ -42,10 +44,12 @@
                 <br>
                 <p class="title1">Medical Description:</p>
                 <p th:text="${prod.sideEffect}"></p>
-                <button class="btnm">Add To Cart</button>
+                <button class="btnm"><a th:href="@{/add-to-cart/{id}(id=${prod.id})}">Add to cart</a></button>
 
             </div>
         </div>
+
+    <!-- </form> -->
 
     
         <div th:replace="~{fragments/footer :: footer}"></div>
