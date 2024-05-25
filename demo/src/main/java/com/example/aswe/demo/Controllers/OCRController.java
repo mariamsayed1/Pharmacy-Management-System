@@ -32,7 +32,7 @@ public class OCRController {
 
         ModelAndView mav = new ModelAndView("ocr.html");
 
-        String directory = "C:/Users/Prof. Mahmoud Sayed/Desktop/Pharmacy-Management-System/demo/src/main/resources/static/IMAGES/";
+        String directory = "C:/xamp/htdocs/Pharmacy-Management-System-2/demo/src/main/resources/static/IMAGES";
 
         // String fileName = file.getOriginalFilename();
 
@@ -43,7 +43,7 @@ public class OCRController {
 
 
         Tesseract tesseract = new Tesseract();
-        tesseract.setDatapath("C:\\Users\\Prof. Mahmoud Sayed\\Desktop\\Pharmacy-Management-System\\demo\\src\\main\\resources\\tessdata");
+        tesseract.setDatapath("C:\\xamp\\htdocs\\Pharmacy-Management-System-2\\demo\\src\\main\\resources\\tessdata");
 
             
         try {
