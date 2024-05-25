@@ -122,7 +122,9 @@ public class PharmacistController {
         Category existingCategory = this.categoryRepository.findById(id);
         existingCategory.setName(updatedCategory.getName());
         existingCategory.setImage(updatedCategory.getImage());
-        categoryRepository.save(existingCategory); 
+        if(!existingCategory.isEmpty(existingCategory.getName()) && !existingCategory.isEmpty(existingCategory.getImage()) ){
+            categoryRepository.save(existingCategory); 
+        }
         return new ModelAndView("redirect:/Pharmacist/categories"); 
     }
 
@@ -162,26 +164,26 @@ public class PharmacistController {
         // }
 
         ModelAndView mav = new ModelAndView("addProductPh.html");
-    if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getActiveIngredient())){
-        if(!product.isPriceValid(product.getPrice())){
-            mav.addObject("priceError", "Invalid input: Number must be greater than 0.");
-            mav.addObject("hasPriceError", true);
+        if(!product.isEmpty(product.getName()) && !product.isEmpty(product.getActiveIngredient())){
+            if(!product.isPriceValid(product.getPrice())){
+                mav.addObject("priceError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasPriceError", true);
+            }
+            if(!product.isQuantityValid(product.getQuantity())){
+                mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
+                mav.addObject("hasQuantityError", true);
+            }
+            if(!product.isValidDate(product.getProdDate(), product.getExpDate())){
+                mav.addObject("dateError", "Invalid input: Expiry Date must be after Production Date");
+                mav.addObject("hasDateError", true);
+            }
+            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") || mav.getModel().containsKey("hasDateError") || mav.getModel().containsKey("hasImageError")) 
+            return mav;
         }
-        if(!product.isQuantityValid(product.getQuantity())){
-            mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
-            mav.addObject("hasQuantityError", true);
-        }
-        if(!product.isValidDate(product.getProdDate(), product.getExpDate())){
-            mav.addObject("dateError", "Invalid input: Expiry Date must be after Production Date");
-            mav.addObject("hasDateError", true);
-        }
-        if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") || mav.getModel().containsKey("hasDateError") || mav.getModel().containsKey("hasImageError")) 
-        return mav;
-}
 
-this.productRepository.save(product);
-return new ModelAndView("redirect:/Pharmacist/products");
-}
+        this.productRepository.save(product);
+        return new ModelAndView("redirect:/Pharmacist/products");
+    }
 
     @GetMapping("editProduct/{id}")
     public ModelAndView editProduct(@PathVariable("id") int id) {
@@ -207,10 +209,14 @@ return new ModelAndView("redirect:/Pharmacist/products");
                 mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
                 mav.addObject("hasQuantityError", true);
             }
+            if(!updatedProduct.isValidDate(updatedProduct.getProdDate(), updatedProduct.getExpDate())){
+                mav.addObject("dateError", "Invalid input: Expiry Date must be after Production Date");
+                mav.addObject("hasDateError", true);
+            }
             
-            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") ||  mav.getModel().containsKey("hasImageError")) 
+            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") || mav.getModel().containsKey("hasDateError") || mav.getModel().containsKey("hasImageError")) 
             return mav;
-    }
+        }
 
         existingProduct.setName(updatedProduct.getName());
         existingProduct.setPrice(updatedProduct.getPrice());
@@ -219,6 +225,9 @@ return new ModelAndView("redirect:/Pharmacist/products");
         existingProduct.setSideEffect(updatedProduct.getSideEffect());
         existingProduct.setQuantity(updatedProduct.getQuantity());
         existingProduct.setCategory(updatedProduct.getCategory());
+        existingProduct.setDescription(updatedProduct.getDescription());
+        existingProduct.setProdDate(updatedProduct.getProdDate());
+        existingProduct.setExpDate(updatedProduct.getExpDate());
 
         productRepository.save(existingProduct); 
         return new ModelAndView("redirect:/Pharmacist/products"); 

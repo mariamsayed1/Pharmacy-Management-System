@@ -45,7 +45,7 @@ public class AdminController {
 
     // private static final List<String> ALLOWED_MIME_TYPES = Arrays.asList("image/jpeg", "image/jpg", "image/png", "image/webp");
 
-    String directory = "C:/Users/Prof. Mahmoud Sayed/Desktop/Pharmacy-Management-System/demo/src/main/resources/static/IMAGES/";
+    // String directory = "C:/Users/Prof. Mahmoud Sayed/Desktop/Pharmacy-Management-System/demo/src/main/resources/static/IMAGES/";
 
    
     @GetMapping("")
@@ -89,7 +89,9 @@ public class AdminController {
         Category existingCategory = this.categoryRepository.findById(id);
         existingCategory.setName(updatedCategory.getName());
         existingCategory.setImage(updatedCategory.getImage());
-        categoryRepository.save(existingCategory); 
+        if(!existingCategory.isEmpty(existingCategory.getName()) && !existingCategory.isEmpty(existingCategory.getImage()) ){
+            categoryRepository.save(existingCategory); 
+        }
         return new ModelAndView("redirect:/Admin/categories"); 
     }
 
@@ -231,10 +233,14 @@ public class AdminController {
                 mav.addObject("quantityError", "Invalid input: Number must be greater than 0.");
                 mav.addObject("hasQuantityError", true);
             }
+            if(!updatedProduct.isValidDate(updatedProduct.getProdDate(), updatedProduct.getExpDate())){
+                mav.addObject("dateError", "Invalid input: Expiry Date must be after Production Date");
+                mav.addObject("hasDateError", true);
+            }
             
-            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") ||  mav.getModel().containsKey("hasImageError")) 
+            if (mav.getModel().containsKey("hasPriceError") || mav.getModel().containsKey("hasQuantityError") || mav.getModel().containsKey("hasDateError") || mav.getModel().containsKey("hasImageError")) 
             return mav;
-    }
+        }
 
 
         existingProduct.setName(updatedProduct.getName());
@@ -244,6 +250,9 @@ public class AdminController {
         existingProduct.setSideEffect(updatedProduct.getSideEffect());
         existingProduct.setQuantity(updatedProduct.getQuantity());
         existingProduct.setCategory(updatedProduct.getCategory());
+        existingProduct.setDescription(updatedProduct.getDescription());
+        existingProduct.setProdDate(updatedProduct.getProdDate());
+        existingProduct.setExpDate(updatedProduct.getExpDate());
 
         productRepository.save(existingProduct); 
         return new ModelAndView("redirect:/Admin/products"); 
