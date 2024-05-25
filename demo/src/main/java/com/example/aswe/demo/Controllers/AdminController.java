@@ -266,9 +266,9 @@ public class AdminController {
 
     @PostMapping("/addPharmacist")
     public ModelAndView savePharmacist(@ModelAttribute Pharmacist pharmacist) {
-        ModelAndView mav = new ModelAndView("addPharmacist.html");
+        ModelAndView mav = new ModelAndView("listPharmacist.html");
 
-        // Validate password length
+        
         if (pharmacist.getPassword().length() < 8) {
             mav.addObject("passwordLengthError", "Password is too short (minimum 8 characters)");
             mav.addObject("hasPasswordLengthError", true);
@@ -282,22 +282,21 @@ public class AdminController {
         return new ModelAndView("redirect:/Admin/addPharmacist");
     }
 
+    @GetMapping("pharmacists")
+    public ModelAndView getAllPharmacists() {
+        ModelAndView mav = new ModelAndView("listPharmacist.html");
+        List<Pharmacist> pharmacists = this.pharmacistRepository.findAll();
+        mav.addObject("pharmacists", pharmacists);
+        return mav;
+    }
+
+    @GetMapping("deletePharmacist/{id}")
+    public ModelAndView deletePharmacist(@PathVariable("id") int id) {
+        this.pharmacistRepository.deleteById(id);
+        return new ModelAndView("redirect:/Admin/pharmacists");
+    }
     
-    
-    // @GetMapping("addPharmacist")
-    // public ModelAndView addPharmacist() {
-    //     ModelAndView mav = new ModelAndView("addPharmacist.html");
-    //     Pharmacist newPharmacist = new Pharmacist();
-    //     mav.addObject("pharmacist", newPharmacist);
-    //     return mav;
-    // }
-    // @PostMapping("addPharmacist")
-    // public ModelAndView savePharmacist(@ModelAttribute Pharmacist pharmacist) {
-    //     String hashedPassword = BCrypt.hashpw(pharmacist.getPassword(), BCrypt.gensalt());
-    //     pharmacist.setPassword(hashedPassword);
-    //     this.pharmacistRepository.save(pharmacist);
-    //     return new ModelAndView("redirect:/Admin/addPharmacist");
-    // }
+  
    
     
     @GetMapping("/logs")
