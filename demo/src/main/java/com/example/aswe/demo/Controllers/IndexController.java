@@ -214,13 +214,13 @@ public class IndexController {
         return new ModelAndView("redirect:/");
     }
 
-    @GetMapping("/index")
-    public ModelAndView getAllCategories() {
-        ModelAndView mav = new ModelAndView("index.html");
-        List<Category> categories = this.categoryRepository.findAll();
-        mav.addObject("categories", categories);
-        return mav;
-    }
+    // @GetMapping("/index")
+    // public ModelAndView getAllCategories() {
+    //     ModelAndView mav = new ModelAndView("index.html");
+    //     List<Category> categories = this.categoryRepository.findAll();
+    //     mav.addObject("categories", categories);
+    //     return mav;
+    // }
 
     @GetMapping("/category/{id}")
     public ModelAndView getCategory(@PathVariable("id") int id, HttpSession session, @RequestParam(defaultValue = "1") int page) {
