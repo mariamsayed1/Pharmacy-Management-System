@@ -1,13 +1,13 @@
-package com.example.aswe.user_microservice;
+package com.example.aswe.userservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserMicroserviceApplication {
+public class UserserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserMicroserviceApplication.class, args);
+		SpringApplication.run(UserserviceApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package com.example.aswe.user_microservice;
+package com.example.aswe.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserMicroserviceApplicationTests {
+class UserserviceApplicationTests {
 
 	@Test
 	void contextLoads() {
