@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Dose Pharmacy</title>
-        <link rel="stylesheet" href="/CSS/styles.css">
+        <link rel="stylesheet" href="/CSS/login.css">
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,15 +30,17 @@
     <!-- <div th:replace="~{fragments/header :: header}"></div> -->
 
     <div>
-        <h1>Upload Image for OCR</h1>
+        
         <form action="/OCR" method="POST">
+            <h1>Upload Image for OCR</h1>
             <input type="file" name="file" accept="image/*" required />
             <button type="submit">Upload</button>
+            <div th:if="${ocrResult}">
+                <h2>Extracted Text</h2>
+                <p th:text="${ocrResult}"></p>
+            </div>
         </form>
-        <div th:if="${ocrResult}">
-            <h2>Extracted Text</h2>
-            <p th:text="${ocrResult}"></p>
-        </div>
+        
 
     </div>
     
