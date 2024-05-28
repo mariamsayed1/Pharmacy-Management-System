@@ -115,7 +115,7 @@
                         </div>
                         <div class="Form-input-box">
                             <label for="name">Product Price</label>
-                            <input type="text" th:field="*{price}" placeholder="Product Price">
+                            <input type="text" th:field="*{price}" placeholder="Product Price" title="Invalid input: Please enter a valid number">
                         </div>
                         <div class="Form-input-box">
                             <label for="name">Active Ingredient</label>
@@ -142,7 +142,7 @@
                         </div>
                         <div class="Form-input-box">
                             <label for="name">Product Price</label>
-                            <input type="text" th:field="*{price}" placeholder="Product Price" required  title="Invalid input: Please enter a valid number">
+                            <input type="text" th:field="*{price}" placeholder="Product Price" required>
                             <p class="errorMessage" th:if="${hasPriceError}" th:text="${priceError}"></p>
                         </div>
                         <div class="Form-input-box">
@@ -159,6 +159,19 @@
                             <p class="errorMessage" th:if="${hasQuantityError}" th:text="${quantityError}"></p>
                         </div>
 
+                        <div class="Form-input-box">
+                            <label for="name">Product Description</label>
+                            <input type="text" th:field="*{description}" placeholder="Product Description">
+                        </div>
+                        <div class="Form-input-box">
+                            <label for="name">Product Production Date</label>
+                            <input type="date" th:field="*{prodDate}" placeholder="Product Production Date" required>
+                        </div>
+                        <div class="Form-input-box">
+                            <label for="name">Product Expiry Date</label>
+                            <input type="date" th:field="*{expDate}" placeholder="Product Expiry Date" required>
+                            <p class="errorMessage" th:if="${hasDateError}" th:text="${dateError}"></p>
+                        </div>
                         
                         <div class="Form-input-box">
                             <label>Add Product Image:</label>
