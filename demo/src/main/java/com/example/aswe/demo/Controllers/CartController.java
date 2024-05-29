@@ -3,16 +3,12 @@ package com.example.aswe.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.example.aswe.demo.Models.Cart;
 import com.example.aswe.demo.Models.CartItem;
-import com.example.aswe.demo.Models.Category;
 import com.example.aswe.demo.Models.Product;
 import com.example.aswe.demo.Repositories.CartItemRepository;
-import com.example.aswe.demo.Repositories.CartRepository;
 import com.example.aswe.demo.Repositories.ProductRepository;
-import com.example.aswe.demo.Repositories.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -26,14 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/cart")
 public class CartController {
-    @Autowired
-    private CartRepository cartRepository;
+    // @Autowired
+    // private CartRepository cartRepository;
 
     @Autowired
     private CartItemRepository cartItemRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    // @Autowired
+    // private UserRepository userRepository;
 
 
     // @GetMapping("/cart")
