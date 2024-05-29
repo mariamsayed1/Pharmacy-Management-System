@@ -15,6 +15,7 @@ public class CartItem {
     private int id;
     
     private int quantity;
+    private double subTotal;
 
     @OneToOne
     private Product product;
@@ -54,6 +55,9 @@ public class CartItem {
     }
 
     public void setQuantity(int quantity) {
+        if (quantity == 0){
+            setQuantity(1);
+        }
         this.quantity = quantity;
     }
 
@@ -71,6 +75,27 @@ public class CartItem {
         setQuantity(quantity);
         return this;
     }
+
+    public CartItem(int id, int quantity, double subTotal, Product product) {
+        this.id = id;
+        this.quantity = quantity;
+        this.subTotal = subTotal;
+        this.product = product;
+    }
+
+    public double getSubTotal() {
+        return this.subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    // public CartItem subTotal(double subTotal, int quantity) {
+    //     setSubTotal(subTotal, quantity);
+    //     return this;
+    // }
+
 
     public double getTotalPrice() {
         return product.getPrice() * quantity;

@@ -37,7 +37,7 @@
                             <!-- <a href="productDetails.html" class="product-title" th:text="${product.name}"></a> -->
                             <a th:href="@{'/productDetails/' + ${product.id}}" class="product-title"th:text="${product.name}"></a>
                             <h5 class="price" th:text="${product.price}"></h5>
-                            <button class="btnm"><a th:href="@{/add-to-cart/{id}(id=${product.id})}">Add to cart</a></button>
+                            <button class="btnm"><a th:href="@{/cart/add-to-cart/{id}(id=${product.id})}">Add to cart</a></button>
                         </div>
                     </div>
             </div>

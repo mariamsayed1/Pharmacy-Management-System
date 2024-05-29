@@ -44,7 +44,7 @@
                 <br>
                 <p class="title1">Medical Description:</p>
                 <p th:text="${prod.sideEffect}"></p>
-                <button class="btnm"><a th:href="@{/add-to-cart/{id}(id=${prod.id})}">Add to cart</a></button>
+                <button class="btnm"><a th:href="@{/cart/add-to-cart/{id}(id=${prod.id})}">Add to cart</a></button>
 
             </div>
         </div>

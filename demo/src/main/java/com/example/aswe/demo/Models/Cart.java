@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     // private int cartQuantity;
-    // private Double TotalPrice;
+    private Double TotalPrice;
 
     // @OneToMany
     // private List<Product> products;
     
-    // @OneToOne
-    // private User user;
+    @ManyToOne
+    private User user;
 
     @OneToMany
     private List<CartItem> items;
@@ -63,6 +64,40 @@ public class Cart {
         setItems(items);
         return this;
     }
+
+    public Cart(int id, Double TotalPrice, User user, List<CartItem> items) {
+        this.id = id;
+        this.TotalPrice = TotalPrice;
+        this.user = user;
+        this.items = items;
+    }
+
+    public Double getTotalPrice() {
+        return this.TotalPrice;
+    }
+
+    public void setTotalPrice(Double TotalPrice) {
+        this.TotalPrice = TotalPrice;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Cart TotalPrice(Double TotalPrice) {
+        setTotalPrice(TotalPrice);
+        return this;
+    }
+
+    public Cart user(User user) {
+        setUser(user);
+        return this;
+    }
+
 
     public void addItem(Product product) {
         if (items == null) {
